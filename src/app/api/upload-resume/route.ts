@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
     const blob = await put(filename, request.body, {
       access: 'public',
       contentType: 'application/pdf',
+      allowOverwrite: true,
     });
 
     // Update the stored resume URL
@@ -26,7 +27,8 @@ export async function POST(request: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         url: blob.url,
-        downloadUrl: blob.downloadUrl ?? blob.url
+        downloadUrl: blob.downloadUrl ?? blob.url,
+        filename: filename
       })
     });
 

@@ -45,7 +45,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
   };
 
   const handleYoureHired = () => {
-    const subject = encodeURIComponent("Let's work together! 🚀");
+    const subject = encodeURIComponent("Let's work together!");
     const body = encodeURIComponent(`Hi Joshua,
 
 I just reviewed your portfolio and resume - I'm impressed! Let's discuss how we can work together.
@@ -93,7 +93,7 @@ Best regards`);
             <div className="bg-gray-800 p-8 text-center h-full flex items-center justify-center">
               <div className="max-w-md">
                 <div className="text-6xl mb-4">📄</div>
-                <h3 className="text-xl font-semibold text-white mb-4">Resume Preview</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Resume failed to load</h3>
                 <p className="text-gray-300 mb-6">
                   Computer Science student at Columbia University with experience in AR/AI development, 
                   full-stack programming, and cybersecurity.

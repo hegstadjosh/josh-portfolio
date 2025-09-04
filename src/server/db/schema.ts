@@ -25,3 +25,17 @@ export const posts = createTable(
   }),
   (t) => [index("name_idx").on(t.name)],
 );
+
+export const resumes = createTable(
+  "resume",
+  (d) => ({
+    id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+    url: d.varchar({ length: 2048 }).notNull(),
+    downloadUrl: d.varchar({ length: 2048 }).notNull(),
+    filename: d.varchar({ length: 256 }),
+    uploadedAt: d
+      .timestamp({ withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+  }),
+);
