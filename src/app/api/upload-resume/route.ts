@@ -1,10 +1,11 @@
 import { put } from '@vercel/blob';
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const filename = searchParams.get('filename') || 'joshua-hegstad-resume.pdf';
+    const filename = searchParams.get('filename') ?? 'joshua-hegstad-resume.pdf';
 
     if (!request.body) {
       return NextResponse.json(
@@ -25,13 +26,13 @@ export async function POST(request: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         url: blob.url,
-        downloadUrl: blob.downloadUrl || blob.url
+        downloadUrl: blob.downloadUrl ?? blob.url
       })
     });
 
     return NextResponse.json({
       url: blob.url,
-      downloadUrl: blob.downloadUrl || blob.url,
+      downloadUrl: blob.downloadUrl ?? blob.url,
       message: 'Resume uploaded successfully!'
     });
 

@@ -17,8 +17,13 @@ export async function GET() {
   });
 }
 
+interface ResumeData {
+  url: string;
+  downloadUrl: string;
+}
+
 export async function POST(request: Request) {
-  const data = await request.json();
+  const data = await request.json() as ResumeData;
   resumeBlob = {
     url: data.url,
     downloadUrl: data.downloadUrl

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ResumeModal from "./_components/ResumeModal";
 
 export default function Home() {
@@ -86,9 +86,9 @@ export default function Home() {
       organization: "Homebrew Computer Club",
       duration: "Feb 2025 - Present",
       location: "New York, NY",
-      description: "Columbia's tech project hub",
+      description: "Columbia&apos;s tech project hub",
       achievements: [
-        "Co-founded Columbia's tech project hub, securing funding & growing membership to 20+ students",
+        "Co-founded Columbia&apos;s tech project hub, securing funding & growing membership to 20+ students",
         "Built website under time pressure to launch on 50th Anniversary of Silicon Valley Homebrew Computer Club"
       ],
       link: "http://HCC.NYC"
@@ -97,7 +97,7 @@ export default function Home() {
 
   const projects = [
     {
-      name: "Don't Fret! - AR Guitar Trainer",
+      name: "Don&apos;t Fret! - AR Guitar Trainer",
       description: "Evolved from web app to AR guitar trainer for Snap Spectacles",
       details: [
         "Initiated as web app (Flask, SQL, Python) with song database & dynamically generated ASCII jazz chord diagrams",
@@ -118,63 +118,81 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-gray-900">
       {/* Hero Section */}
-      <header className="bg-gradient-to-r from-blue-50 to-indigo-100 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+      <header className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700 overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 to-purple-900/5"></div>
+        <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%)'}}></div>
+        <div className="relative max-w-7xl mx-auto px-6 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Left: Name & Title */}
             <div className="lg:col-span-2">
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
                 Joshua Hegstad
               </h1>
-              <p className="text-xl text-gray-700 mb-6">
+              <p className="text-xl text-gray-200 mb-6">
                 Computer Science @ Columbia University
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mb-6">
+              <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mb-6">
                 Computer Science student at Columbia University with experience in AR/AI development, 
                 full-stack programming, and cybersecurity. C.P. Davis Scholar and National Merit Scholar 
                 passionate about building innovative tech solutions from web platforms to augmented reality systems.
               </p>
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-gray-600">Available for opportunities</span>
+                <span className="text-gray-300">Available for opportunities</span>
               </div>
               <div className="flex flex-wrap gap-4">
-                <a href="mailto:J.Hegstad@Columbia.edu" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                  Email
+                <a href="mailto:J.Hegstad@Columbia.edu" className="group relative bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Email
+                  </span>
                 </a>
-                <a href="https://github.com/JoshHegstad" target="_blank" className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                  GitHub
+                <a href="https://github.com/hegstadjosh" target="_blank" className="group relative bg-gray-800 border-2 border-gray-600 text-gray-200 px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:border-gray-400 hover:text-white transition-all duration-300 transform hover:scale-105">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                  </span>
                 </a>
                 <button 
                   onClick={() => setIsResumeModalOpen(true)}
-                  className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="group relative bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105"
                 >
-                  Resume
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Resume
+                  </span>
                 </button>
               </div>
             </div>
             
             {/* Right: Skills */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Skills & Technologies</h3>
+              <h3 className="text-lg font-semibold text-white mb-4">Skills & Technologies</h3>
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-medium text-gray-800 mb-2">Languages</h4>
+                  <h4 className="font-medium text-gray-200 mb-2">Languages</h4>
                   <div className="flex flex-wrap gap-2">
                     {["Python", "R", "SQL", "Java", "C#", "C", "TypeScript", "JavaScript"].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                      <span key={skill} className="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-800 mb-2">Frameworks & Tools</h4>
+                  <h4 className="font-medium text-gray-200 mb-2">Frameworks & Tools</h4>
                   <div className="flex flex-wrap gap-2">
                     {["React", "Next.js", "Flask", "AWS", "Unity", "Lens Studio"].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                      <span key={skill} className="px-3 py-1 bg-green-900 text-green-200 text-sm rounded-full">
                         {skill}
                       </span>
                     ))}
@@ -192,17 +210,17 @@ export default function Home() {
           <div className="space-y-12">
             {/* Education */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Education</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <h2 className="text-2xl font-bold text-white mb-6">Education</h2>
+              <div className="bg-gray-800 p-6 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-semibold text-gray-900">Columbia University, School of Engineering</h3>
-                  <span className="text-sm text-gray-600">Sep 2023 - Dec 2026</span>
+                  <h3 className="text-lg font-semibold text-white">Columbia University, School of Engineering</h3>
+                  <span className="text-sm text-gray-300">Sep 2023 - Dec 2026</span>
                 </div>
-                <p className="text-gray-700 mb-2">Bachelor of Science in Computer Science, Statistics Minor</p>
+                <p className="text-gray-200 mb-2">Bachelor of Science in Computer Science, Statistics Minor</p>
                 <p className="text-blue-600 font-medium mb-4">C.P. Davis Scholar (Top Engineers), National Merit Scholar</p>
                 <div>
-                  <h4 className="font-medium text-gray-800 mb-2">Coursework</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4 className="font-medium text-gray-200 mb-2">Coursework</h4>
+                  <p className="text-sm text-gray-300">
                     Advanced Programming, Databases, Data Structures, AI, NLP, UI, 3DUI, VR/AR, 
                     Stats/Probability, Probability Theory, Linear Algebra, Multivariable Calculus
                   </p>
@@ -212,32 +230,32 @@ export default function Home() {
 
             {/* Leadership */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Leadership</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Leadership</h2>
               <div className="space-y-6">
                 {leadership.map((role, index) => (
-                  <div key={index} className="bg-gray-50 p-6 rounded-lg">
+                  <div key={index} className="bg-gray-800 p-6 rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900">{role.title}</h3>
+                        <h3 className="text-lg font-semibold text-white">{role.title}</h3>
                         <div className="flex items-center gap-2">
-                          <p className="text-gray-700">{role.organization}</p>
+                          <p className="text-gray-200">{role.organization}</p>
                           {role.link && (
-                            <a href={role.link} target="_blank" className="text-blue-600 hover:text-blue-800 text-sm">
+                            <a href={role.link} target="_blank" className="text-blue-600 hover:text-blue-200 text-sm">
                               →
                             </a>
                           )}
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm text-gray-600">{role.duration}</div>
-                        <div className="text-xs text-gray-500">{role.location}</div>
+                        <div className="text-sm text-gray-300">{role.duration}</div>
+                        <div className="text-xs text-gray-400">{role.location}</div>
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-3">{role.description}</p>
+                    <p className="text-gray-300 mb-3">{role.description}</p>
                     {role.achievements && (
                       <ul className="space-y-1 mb-4">
                         {role.achievements.map((achievement, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex">
+                          <li key={i} className="text-sm text-gray-200 flex">
                             <span className="text-blue-500 mr-2">•</span>
                             <span>{achievement}</span>
                           </li>
@@ -247,7 +265,7 @@ export default function Home() {
                     {role.technologies && (
                       <div className="flex flex-wrap gap-2">
                         {role.technologies.map((tech, i) => (
-                          <span key={i} className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">
+                          <span key={i} className="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded">
                             {tech}
                           </span>
                         ))}
@@ -260,16 +278,16 @@ export default function Home() {
 
             {/* Projects */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Projects</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Projects</h2>
               <div className="space-y-6">
                 {projects.map((project, index) => (
-                  <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h3>
-                    <p className="text-gray-600 mb-3">{project.description}</p>
+                  <div key={index} className="bg-gray-800 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold text-white mb-2">{project.name}</h3>
+                    <p className="text-gray-300 mb-3">{project.description}</p>
                     {project.details && (
                       <ul className="space-y-1 mb-4">
                         {project.details.map((detail, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex">
+                          <li key={i} className="text-sm text-gray-200 flex">
                             <span className="text-green-500 mr-2">•</span>
                             <span>{detail}</span>
                           </li>
@@ -278,7 +296,7 @@ export default function Home() {
                     )}
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, i) => (
-                        <span key={i} className="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">
+                        <span key={i} className="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded">
                           {tech}
                         </span>
                       ))}
@@ -292,27 +310,27 @@ export default function Home() {
           {/* Right Column - Work Experience */}
           <div>
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Work Experience</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Work Experience</h2>
               <div className="space-y-8">
                 {workExperience.map((job, index) => (
                   <div key={index} className="relative">
                     {/* Timeline dot */}
                     <div className="absolute -left-6 mt-2">
-                      <div className={`w-3 h-3 rounded-full ${index === 0 ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
+                      <div className={`w-3 h-3 rounded-full ${index === 0 ? 'bg-blue-9000' : 'bg-gray-300'}`}></div>
                     </div>
                     {/* Timeline line */}
                     {index < workExperience.length - 1 && (
-                      <div className="absolute -left-5 mt-5 w-px h-20 bg-gray-200"></div>
+                      <div className="absolute -left-5 mt-5 w-px h-20 bg-gray-700"></div>
                     )}
                     
-                    <div className="bg-white border border-gray-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
+                          <h3 className="text-lg font-semibold text-white">{job.title}</h3>
                           <div className="flex items-center gap-2">
-                            <p className="text-gray-700">{job.company}</p>
+                            <p className="text-gray-200">{job.company}</p>
                             {job.link && (
-                              <a href={job.link} target="_blank" className="text-blue-600 hover:text-blue-800 text-sm">
+                              <a href={job.link} target="_blank" className="text-blue-600 hover:text-blue-200 text-sm">
                                 →
                               </a>
                             )}
@@ -320,16 +338,16 @@ export default function Home() {
                         </div>
                         <div className="text-right">
                           <div className="text-sm font-medium text-blue-600">{job.duration}</div>
-                          <div className="text-xs text-gray-500">{job.location}</div>
+                          <div className="text-xs text-gray-400">{job.location}</div>
                         </div>
                       </div>
                       
-                      <p className="text-gray-600 mb-4">{job.description}</p>
+                      <p className="text-gray-300 mb-4">{job.description}</p>
                       
                       {job.achievements && (
                         <ul className="space-y-2 mb-4">
                           {job.achievements.map((achievement, i) => (
-                            <li key={i} className="text-sm text-gray-700 flex">
+                            <li key={i} className="text-sm text-gray-200 flex">
                               <span className="text-blue-500 mr-2">•</span>
                               <span>{achievement}</span>
                             </li>
@@ -339,7 +357,7 @@ export default function Home() {
                       
                       <div className="flex flex-wrap gap-2">
                         {job.technologies.map((tech, i) => (
-                          <span key={i} className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded">
+                          <span key={i} className="px-2 py-1 bg-blue-900 text-blue-200 text-xs rounded">
                             {tech}
                           </span>
                         ))}
@@ -354,11 +372,11 @@ export default function Home() {
       </div>
 
       {/* Contact Section */}
-      <footer className="bg-gray-50 border-t border-gray-200 mt-16">
+      <footer className="bg-gray-800 border-t border-gray-700 mt-16">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Let's Connect</h2>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-white mb-4">Let&apos;s Connect</h2>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Whether you want to discuss AR/AI projects, cybersecurity solutions, 
               or just chat about the latest in tech - my inbox is always open.
             </p>
