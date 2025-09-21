@@ -8,10 +8,10 @@ export default function Home() {
   const workExperience = [
     {
       title: "Software Engineer/Product Manager",
-      company: "Research Assistant, Dean of Social Sciences, Columbia University",
+      company: "Research Assistant, Columbia University",
       duration: "Jun 2025 - Present",
       location: "New York, NY",
-      description: "Independently building an AI courseware platform, including study tools for students and assignment creation & grading tools for teachers.",
+      description: "Independently developing AI tools using TypeScript, React, Next.js, and Vercel AI SDK.",
       technologies: ["TypeScript", "React", "Next.js", "Vercel AI SDK"]
     },
     {
