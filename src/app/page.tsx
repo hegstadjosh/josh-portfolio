@@ -95,6 +95,22 @@ export default function Home() {
 
   const projects = [
     {
+      name: "ArcaTracker.com",
+      description: "Mobile-first productivity tracker where users log ‘Lock-In’ focus sessions, follow friends, and track consistency.",
+      details: undefined,
+      technologies: ["Next.js", "React", "TypeScript"],
+      link: "https://arcatracker.com",
+      previewUrl: "https://arcatracker.com"
+    },
+    {
+      name: "Photography Website",
+      description: "Minimalist photography portfolio with custom CMS for uploads and album management.",
+      details: undefined,
+      technologies: ["Next.js", "React", "TypeScript"],
+      link: "https://caitlin-king.vercel.app/",
+      previewUrl: "https://caitlin-king.vercel.app/"
+    },
+    {
       name: "Don't Fret! - AR Guitar Trainer",
       description: "Evolved from web app to AR guitar trainer for Snap Spectacles",
       details: [
@@ -108,13 +124,6 @@ export default function Home() {
       name: "Hackathon Projects",
       description: "Columbia, Cornell Hackathons",
       technologies: ["Python", "Flask", "Figma", "OpenAI", "Anthropic", "CrewAI", "Spotify APIs"],
-      details: undefined,
-      link: undefined
-    },
-    {
-      name: "Web Server from Scratch",
-      description: "Built custom web server in C",
-      technologies: ["C"],
       details: undefined,
       link: undefined
     }
@@ -487,7 +496,7 @@ export default function Home() {
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-lg font-semibold text-white group-hover:text-[#6CACE4] transition-colors">{project.name}</h3>
                       {project.link && (
-                        <a href={project.link} target="_blank" className="text-[#6CACE4] hover:text-[#6CACE4] transition-colors">
+                        <a href={project.link} target="_blank" className="text-[#6CACE4] hover:text-[#6CACE4] transition-colors" aria-label="Open project in new tab">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
@@ -504,6 +513,16 @@ export default function Home() {
                           </li>
                         ))}
                       </ul>
+                    )}
+                    {"previewUrl" in project && project.previewUrl && (
+                      <div className="mb-4 border border-gray-700/70 bg-black/30 overflow-hidden">
+                        <iframe
+                          src={project.previewUrl}
+                          title={`${project.name} preview`}
+                          className="w-full h-[420px]"
+                          loading="lazy"
+                        />
+                      </div>
                     )}
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, i) => (
