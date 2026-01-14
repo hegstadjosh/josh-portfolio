@@ -51,8 +51,7 @@ export default function Home() {
       name: "Puriphico",
       description: "Hand hygiene compliance monitoring dashboard for healthcare facilities.",
       technologies: ["Next.js", "Supabase", "Recharts"],
-      link: undefined,
-      previewImage: "/puriphico-preview.png",
+      link: "https://puriphico.com",
       details: ["Real-time session tracking from IoT devices", "Customizable compliance thresholds", "Multi-location management with CSV export"]
     },
     {
@@ -243,10 +242,6 @@ export default function Home() {
                   title={selectedProject.name}
                   className="w-full h-full"
                 />
-              </div>
-            ) : selectedProject.previewImage ? (
-              <div className="h-[400px] bg-black flex items-center justify-center">
-                <img src={selectedProject.previewImage} alt={selectedProject.name} className="max-h-full object-contain" />
               </div>
             ) : null}
 
