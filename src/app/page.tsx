@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
-import ResumeModal from "./_components/ResumeModal";
 
 export default function Home() {
-  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<typeof otherProjects[0] | null>(null);
   const [expandedJob, setExpandedJob] = useState<number | null>(null);
 
@@ -163,15 +161,6 @@ export default function Home() {
               </svg>
               LinkedIn
             </a>
-            <button
-              onClick={() => setIsResumeModalOpen(true)}
-              className="flex items-center gap-2 bg-[#012169] text-white px-6 py-3 font-medium hover:bg-[#012169]/80 transition-all"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Resume
-            </button>
           </div>
         </div>
       </header>
@@ -398,10 +387,6 @@ export default function Home() {
         </div>
       </footer>
 
-      <ResumeModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-      />
     </main>
   );
 }
