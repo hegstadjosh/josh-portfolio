@@ -77,7 +77,7 @@ export default function Home() {
       role: "Research Assistant",
       date: "Jun 2025 - Present",
       summary: "Developing AI research tools",
-      details: ["Building AI-powered research tools", "TypeScript, React, Next.js stack"]
+      details: ["Building AI-powered research tools"]
     },
     {
       logo: "/logos/purepoker.svg",
