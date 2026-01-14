@@ -43,19 +43,19 @@ export default function Home() {
       link: "https://polley.live"
     },
     {
+      name: "Josh-OS",
+      description: "Personal AI assistant integrating Obsidian, GitHub, and web research via MCP.",
+      technologies: ["TypeScript", "Claude SDK", "MCP"],
+      link: "https://agent.joshuahegstad.org",
+      details: ["MCP server for Claude Code integration", "GitHub and Exa web search tools", "Audio transcription via Deepgram"]
+    },
+    {
       name: "Puriphico",
       description: "Hand hygiene compliance monitoring dashboard for healthcare facilities.",
       technologies: ["Next.js", "Supabase", "Recharts"],
       link: undefined,
       previewImage: "/puriphico-preview.png",
       details: ["Real-time session tracking from IoT devices", "Customizable compliance thresholds", "Multi-location management with CSV export"]
-    },
-    {
-      name: "Josh-OS",
-      description: "Personal AI assistant integrating Obsidian, GitHub, and web research via MCP.",
-      technologies: ["TypeScript", "Claude SDK", "MCP"],
-      link: "https://agent.joshuahegstad.org",
-      details: ["MCP server for Claude Code integration", "GitHub and Exa web search tools", "Audio transcription via Deepgram"]
     },
     {
       name: "ArcaTracker",
