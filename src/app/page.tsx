@@ -71,7 +71,7 @@ export default function Home() {
       role: "Research Assistant",
       date: "Jun 2025 - Present",
       summary: "Developing AI research tools",
-      details: ["Building AI-powered research tools", "alnd.ai - AI education platform"]
+      details: ["Building AI-powered education platform", "Study materials generation and personalized tutoring", "Next.js, TypeScript, Vercel AI SDK"]
     },
     {
       logo: "/logos/purepoker.svg",
