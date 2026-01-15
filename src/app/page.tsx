@@ -7,12 +7,6 @@ export default function Home() {
 
   const featuredProjects = [
     {
-      name: "AlignED",
-      description: "AI-powered education platform with study materials generation and personalized tutoring.",
-      technologies: ["Next.js", "TypeScript", "Vercel AI SDK"],
-      embedUrl: "https://alnd.ai"
-    },
-    {
       name: "Standard Partners Fund Projects",
       description: "Investor Goggles (AR market insights) and Debt Vulture (bankruptcy monitoring), built in partnership with Standard Partners Fund LP.",
       technologies: ["Next.js", "TypeScript", "Supabase", "LLMs", "AR"],
@@ -77,7 +71,7 @@ export default function Home() {
       role: "Research Assistant",
       date: "Jun 2025 - Present",
       summary: "Developing AI research tools",
-      details: ["Building AI-powered research tools"]
+      details: ["Building AI-powered research tools", "alnd.ai - AI education platform"]
     },
     {
       logo: "/logos/purepoker.svg",
