@@ -29,12 +29,6 @@ export default function Home() {
 
   const otherProjects = [
     {
-      name: "Polley",
-      description: "Donation-based polling platform for streamers where viewers pay to influence poll outcomes. Real-time updates, streamer dashboard with analytics.",
-      technologies: ["Next.js", "TypeScript", "Stripe"],
-      link: "https://polley.live"
-    },
-    {
       name: "Josh-OS",
       description: "Personal AI assistant integrating Obsidian, GitHub, and web research via MCP.",
       technologies: ["TypeScript", "Claude SDK", "MCP"],
