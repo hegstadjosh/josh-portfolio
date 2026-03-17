@@ -7,6 +7,12 @@ export default function Home() {
 
   const featuredProjects = [
     {
+      name: "AlignEd",
+      description: "AI education platform that generates study materials and assignments from any document.",
+      technologies: ["Next.js", "TypeScript", "AI"],
+      embedUrl: "https://alnd.ai"
+    },
+    {
       name: "Standard Partners Fund Projects",
       description: "Investor Goggles (AR market insights) and Debt Vulture (bankruptcy monitoring), built in partnership with Standard Partners Fund LP.",
       technologies: ["Next.js", "TypeScript", "Supabase", "LLMs", "AR"],
