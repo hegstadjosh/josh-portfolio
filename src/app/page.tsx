@@ -25,6 +25,13 @@ export default function Home() {
       embedUrl: "/nlp-paper.pdf"
     },
     {
+      name: "Claude Code Skills",
+      description: "Custom skills I built for Claude Code — prompt engineering, multi-session orchestration, human writing, study guide generation, and more. Started with a full dashboard app (Codeception), then realized simple skills + recall replace complex UI. 12 skills, all downloadable.",
+      technologies: ["Claude Code", "Prompt Engineering", "Rust", "Python"],
+      embedUrl: "/skills",
+      link: "/skills"
+    },
+    {
       name: "NASA SUITS",
       description: "Co-led Columbia's team developing AR astronaut guidance system. Scaled software team 2x to 20 engineers. Implemented Agile workflows, secured funding via NASA & NY Space Grant proposals. Successfully tested at Johnson Space Center with NASA engineers.",
       technologies: ["Unity", "C#", "HoloLens 2", "Snap Spectacles"],
