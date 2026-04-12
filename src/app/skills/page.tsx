@@ -17,11 +17,6 @@ interface Skill {
 
 const categories = [
   {
-    id: "ai-tools",
-    label: "AI Tooling",
-    description: "Get more out of AI models and prompts",
-  },
-  {
     id: "orchestration",
     label: "Session Orchestration",
     description: "Manage and coordinate Claude Code sessions",
@@ -32,44 +27,13 @@ const categories = [
     description: "Turn course materials into study resources",
   },
   {
-    id: "writing",
-    label: "Writing",
-    description: "Write like a human, not a language model",
-  },
-  {
-    id: "meta",
-    label: "Meta / Self-Improvement",
-    description: "Make Claude better at being Claude",
+    id: "corrections",
+    label: "Corrections",
+    description: "Make Claude less insane and more responsive",
   },
 ];
 
 const skills: Skill[] = [
-  // AI Tooling
-  {
-    name: "prompt-master",
-    title: "Prompt Master",
-    description:
-      "Generates optimized prompts for any AI tool — LLMs, Cursor, Midjourney, image/video AI, coding agents.",
-    tags: ["prompting", "all AI tools"],
-    size: "28K",
-    category: "ai-tools",
-    why: "Most people write prompts by feel. This skill encodes a full prompt engineering framework — tool-specific routing (Claude, GPT, Gemini, o3, Midjourney, Stable Diffusion, Cursor, Devin, and 20+ more), a diagnostic checklist that catches 35 common failure patterns, and hard rules that prevent techniques that cause hallucination in single-prompt execution. One prompt, first try, no re-prompts needed.",
-    how: 'Tell Claude what you want a prompt for and which tool it targets. The skill extracts your intent across 9 dimensions, routes to the right tool-specific template, runs a diagnostic pass, and outputs a single copy-pasteable prompt. It also handles prompt decompilation — paste a bad prompt and it\'ll fix it. Includes reference files for templates and anti-patterns.',
-    invoke: "/prompt-master",
-  },
-  {
-    name: "second-opinion",
-    title: "Second Opinion",
-    description:
-      "Get a different perspective from other LLMs (GPT, Gemini, Opus, Grok) on design decisions, architecture, or debugging.",
-    tags: ["multi-model", "decision-making"],
-    size: "3.7K",
-    category: "ai-tools",
-    why: "When you're deep in a problem with one model, you develop tunnel vision. This skill lets Claude Code call out to GPT, Gemini, or another Claude instance for an independent take — no shared context, no confirmation bias. Useful for architecture decisions, debugging dead ends, or any judgment call where a second perspective would help.",
-    how: "Invoke with a question or context. The skill runs a Python script that queries other models via their APIs (OpenAI, Google AI Studio, Anthropic) with a meta-prompt that tells the other model to think holistically and challenge assumptions. Supports querying one model or all three in parallel. Claude then synthesizes where they agree, disagree, and what it recommends.",
-    invoke: "/second-opinion",
-  },
-
   // Session Orchestration
   {
     name: "jarvis",
@@ -164,7 +128,19 @@ const skills: Skill[] = [
     invoke: "/extract-image",
   },
 
-  // Writing
+  // Corrections
+  {
+    name: "second-opinion",
+    title: "Second Opinion",
+    description:
+      "Get a different perspective from other LLMs (GPT, Gemini, Opus, Grok) on design decisions, architecture, or debugging.",
+    tags: ["multi-model", "decision-making"],
+    size: "3.7K",
+    category: "corrections",
+    why: "When you're deep in a problem with one model, you develop tunnel vision. This skill lets Claude Code call out to GPT, Gemini, or another Claude instance for an independent take — no shared context, no confirmation bias. Useful for architecture decisions, debugging dead ends, or any judgment call where a second perspective would help.",
+    how: "Invoke with a question or context. The skill runs a Python script that queries other models via their APIs (OpenAI, Google AI Studio, Anthropic) with a meta-prompt that tells the other model to think holistically and challenge assumptions. Supports querying one model or all three in parallel. Claude then synthesizes where they agree, disagree, and what it recommends.",
+    invoke: "/second-opinion",
+  },
   {
     name: "human-writing",
     title: "Human Writing",
@@ -172,13 +148,12 @@ const skills: Skill[] = [
       "Write prose that reads like a real human. Kills AI patterns in essays, emails, cover letters, and any non-code text.",
     tags: ["writing", "anti-AI-voice"],
     size: "4.8K",
-    category: "writing",
+    category: "corrections",
     why: "AI-generated text has tells — em-dashes everywhere, \"Furthermore\" transitions, thesis-body-conclusion structure, perfectly balanced arguments, words like \"delve\" and \"nuanced.\" Readers (professors, recruiters, admissions) spot these instantly. This skill encodes a complete writing process and a kill list of AI patterns to produce prose that sounds like a specific human wrote it.",
     how: "The skill enforces a three-phase writing process: before (identify audience, parse the question, find your thesis), during (shift between writer and reader, check connotation of every detail), and after (read as the audience cold, read aloud). It includes specific rules for punctuation, transitions, structure, vocabulary, and tone — plus calibration by context (college essays vs. professional emails vs. applications).",
     invoke: "/human-writing",
   },
 
-  // Meta
   {
     name: "therapy",
     title: "Therapy",
@@ -186,7 +161,7 @@ const skills: Skill[] = [
       "Review logged gripes about Claude's behavior, identify patterns, and design structural fixes.",
     tags: ["meta", "self-improvement"],
     size: "1.7K",
-    category: "meta",
+    category: "corrections",
     why: "Claude has recurring behavior problems — over-engineering, excessive hedging, ignoring instructions. Individual corrections fix one instance but don't prevent recurrence. This skill reviews your accumulated gripes (logged via /vent), identifies patterns across them, and designs structural fixes: CLAUDE.md rules, hook scripts, or skill modifications that address the root cause.",
     how: "The skill reads your vent log, clusters complaints by theme, identifies the most impactful patterns, and proposes concrete fixes — not just \"be better\" but specific rules, settings changes, or code modifications. It's the difference between yelling at the model and actually changing its behavior.",
     invoke: "/therapy",
@@ -198,7 +173,7 @@ const skills: Skill[] = [
       "Log a gripe about Claude's behavior to the therapy system. Journal-style, not diagnostic.",
     tags: ["meta", "journaling"],
     size: "1.6K",
-    category: "meta",
+    category: "corrections",
     why: "When Claude does something frustrating — over-engineers a simple fix, ignores a clear instruction, hedges when you asked for a direct answer — you want to log it while the frustration is fresh. This skill captures the gripe in a structured format that the therapy skill can later analyze for patterns. No analysis, no fixing, just venting.",
     how: "Invoke when Claude does something annoying. Describe what happened and why it was wrong. The skill logs the entry with a timestamp and context to a persistent file. Designed to be fast and low-friction — the analysis happens later when you run /therapy.",
     invoke: "/vent",

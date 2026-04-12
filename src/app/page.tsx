@@ -26,7 +26,7 @@ export default function Home() {
     },
     {
       name: "Claude Code Skills",
-      description: "Custom skills I built for Claude Code — prompt engineering, multi-session orchestration, human writing, study guide generation, and more. Started with a full dashboard app (Codeception), then realized simple skills + recall replace complex UI. 12 skills, all downloadable.",
+      description: "Custom skills I built for Claude Code — prompt engineering, multi-session orchestration, human writing, study guide generation, and more. Started with a full dashboard app (Codeception), then realized simple skills + recall replace complex UI. 11 skills, all downloadable.",
       technologies: ["Claude Code", "Prompt Engineering", "Rust", "Python"],
       embedUrl: "/skills",
       link: "/skills"
@@ -124,7 +124,6 @@ export default function Home() {
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors">Projects</a>
             <a href="#experience" className="text-gray-400 hover:text-white transition-colors">Experience</a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
-            <a href="/skills" className="text-gray-400 hover:text-white transition-colors">Skills</a>
           </div>
         </div>
       </nav>
