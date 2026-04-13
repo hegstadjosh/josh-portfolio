@@ -433,6 +433,72 @@ export default function SkillsPage() {
         </div>
       )}
 
+      {/* Docs */}
+      <section className="px-6 pb-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold text-white">Docs</h2>
+            <p className="text-gray-500 text-sm">
+              The configuration and thinking behind the skills
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link
+              href="/skills/docs/claude-md"
+              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
+            >
+              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
+                My CLAUDE.md
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The global instructions file that shapes how Claude Code
+                behaves. Engineering principles, agent guidance, and the rules
+                that prevent recurring failure modes.
+              </p>
+            </Link>
+            <Link
+              href="/skills/docs/engineering-principles"
+              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
+            >
+              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
+                Engineering Principles
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                19 principles from operations, lean, and management applied to
+                agent workflows. Theory of Constraints, walking skeletons,
+                generator/evaluator separation, and more.
+              </p>
+            </Link>
+            <Link
+              href="/skills/docs/autonomous-build-workflow"
+              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
+            >
+              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
+                Autonomous Build Workflow
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The full playbook for autonomous overnight builds — agent teams,
+                ralph loops, PROGRESS.md handoffs, and the
+                Planner/Generator/Evaluator pattern.
+              </p>
+            </Link>
+            <Link
+              href="/skills/docs/jarvis-spec"
+              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
+            >
+              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
+                Jarvis Design Spec
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The design document written before building the Jarvis skill.
+                How to spec an agent skill — architecture, data sources,
+                behavior, and what to deliberately defer.
+              </p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Installation Instructions */}
       <section className="px-6 pb-20">
         <div className="max-w-5xl mx-auto">
@@ -447,7 +513,7 @@ export default function SkillsPage() {
                 </p>
                 <pre className="bg-black border border-gray-800 p-3 text-gray-300 overflow-x-auto">
                   {`# Single skill
-unzip prompt-master.zip -d ~/.claude/skills/
+unzip human-writing.zip -d ~/.claude/skills/
 
 # All skills
 unzip all-skills.zip -d ~/.claude/skills/`}
