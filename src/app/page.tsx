@@ -13,10 +13,11 @@ export default function Home() {
       embedUrl: "https://alnd.ai"
     },
     {
-      name: "Standard Partners Fund Projects",
-      description: "Investor Goggles (AR market insights) and Debt Vulture (bankruptcy monitoring), built in partnership with Standard Partners Fund LP.",
-      technologies: ["Next.js", "TypeScript", "Supabase", "LLMs", "AR"],
-      embedUrl: "https://debtvulture.com"
+      name: "Debt Vulture",
+      description: "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. Includes a multi-agent simulation engine where AI agents negotiate bankruptcy proceedings — with memory, reflection, and causality tracking. Built in partnership with Standard Partners Fund LP.",
+      technologies: ["Next.js", "Python", "LangGraph", "Supabase", "PACER"],
+      previewImage: "/debt-vulture-sim.png",
+      link: "/debt-vulture"
     },
     {
       name: "NLP Hallucination Mitigation",
