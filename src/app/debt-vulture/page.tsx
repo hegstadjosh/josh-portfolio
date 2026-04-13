@@ -4,18 +4,23 @@ import Link from "next/link";
 const screenshots = [
   {
     src: "/debt-vulture/sim-lab.png",
-    alt: "Simulation Lab — multi-panel IDE with live agent activity",
-    caption: "The Simulation Lab",
+    alt: "Completed simulation showing 5 agents, 57 ticks, 46 beats, and $17 estimated cost",
+    caption: "A completed Serta Simmons simulation — 5 agents negotiated over 46 beats, producing 967 causality nodes",
+  },
+  {
+    src: "/debt-vulture/sim-timeline.png",
+    alt: "Timeline view with expanded beat showing agent actions, messages, and reflections",
+    caption: "Timeline with an expanded beat — agents take actions, exchange messages, and form reflections in real time",
   },
   {
     src: "/debt-vulture/sim-graph.png",
-    alt: "Causality graph tracking how agent actions produce consequences",
-    caption: "Causality graph",
+    alt: "Graph view showing all 5 agents' actions, messages, and reflections across time",
+    caption: "Graph view — actions, messages, and reflections across all agents, with causality arrows showing influence",
   },
   {
-    src: "/debt-vulture/agent-inspector.png",
-    alt: "Agent inspector with memory stream and reflections",
-    caption: "Agent inspector",
+    src: "/debt-vulture/sim-graph-2.png",
+    alt: "Graph view zoomed into a later beat showing coalition formation and strategic maneuvering",
+    caption: "A later beat — agents form coalitions, exchange legal strategy, and the God agent generates world events",
   },
 ];
 
