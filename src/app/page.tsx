@@ -26,6 +26,12 @@ export default function Home() {
       embedUrl: "/nlp-paper.pdf"
     },
     {
+      name: "River",
+      description: "A personal task system that integrates with Claude Code. Tasks live in SQLite, flow between human and agent contexts, and carry energy/commitment scores. Built because every other task app treats AI agents and humans as separate workflows.",
+      technologies: ["Next.js", "TypeScript", "SQLite", "Claude Code"],
+      embedUrl: "https://taskriver.dev"
+    },
+    {
       name: "Claude Code Skills",
       description: "Custom skills I built for Claude Code — prompt engineering, multi-session orchestration, human writing, study guide generation, and more. Started with a full dashboard app (Codeception), then realized simple skills + recall replace complex UI. 11 skills, all downloadable.",
       technologies: ["Claude Code", "Prompt Engineering", "Rust", "Python"],
