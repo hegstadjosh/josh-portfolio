@@ -133,7 +133,7 @@ export function ResumeSection() {
     fetch("/api/resume-url")
       .then((res) => res.json())
       .then((data: { url: string }) => setResumeUrl(data.url))
-      .catch(() => {});
+      .catch((err) => console.error("Failed to load resume:", err));
   }, []);
 
   return (
