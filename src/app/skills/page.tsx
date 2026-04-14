@@ -12,6 +12,7 @@ interface Skill {
   why: string;
   how: string;
   invoke: string;
+  dependencies?: string;
   links?: { label: string; url: string }[];
 }
 
@@ -58,6 +59,8 @@ const skills: Skill[] = [
     why: `I originally built a full dashboard app for this called Codeception (github.com/hegstadjosh/codeception) — a Next.js + Rust project with a React UI, WebSocket streaming, session cards, cost tracking, voice input, the works. Built the whole thing in a 2-day sprint: ~24 React components, a full Axum backend, tmux integration, Gemini-powered summaries. It worked, but the gap between ambition and actual need was huge. You had to run a Rust daemon, keep a dashboard open, manage tmux alongside the UI, debug npm packaging. Then I realized: a Claude Code skill that talks to the same Rust backend via curl gets you 90% of the value with zero UI overhead. Combined with Jarvis for recall, it replaced the entire dashboard. The lesson was that transparent automation through skills beats visible complexity.`,
     how: "The skill connects to a lightweight Rust backend (the recon binary from the original Codeception project) on localhost:3100. It auto-starts the backend if it's not running. From there it can list all sessions with their status, search by keyword, read conversation history, send messages to running sessions, kill or resume them, set notes, rename sessions, and trigger AI-powered summaries. During overnight autonomous runs, it acts as the operator — polling sessions on schedule, providing input when agents get stuck, and handling stops without waiting for you to come back.",
     invoke: "/manager",
+    dependencies:
+      "Requires the claude-manager backend (Rust). Clone hegstadjosh/codeception and build with cargo.",
     links: [
       {
         label: "Codeception (the original dashboard)",
@@ -408,6 +411,15 @@ export default function SkillsPage() {
                   {selectedSkill.how}
                 </p>
               </div>
+
+              {/* Dependencies */}
+              {selectedSkill.dependencies && (
+                <div className="mb-6 bg-yellow-900/20 border border-yellow-800/50 px-4 py-3">
+                  <p className="text-yellow-200/80 text-sm">
+                    {selectedSkill.dependencies}
+                  </p>
+                </div>
+              )}
 
               {/* Invoke */}
               <div className="mb-6">
