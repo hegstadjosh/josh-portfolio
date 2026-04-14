@@ -361,12 +361,12 @@ export default function ClaudeSetupSection() {
           >
             Claude Code
           </a>
-          {" "}ships like a MacBook with no software installed. Writing
-          clear instructions, documenting failure modes, building
-          repeatable workflows. That&apos;s the software. These are mine.
+          {" "}ships like a MacBook Pro with no software installed. Writing
+          clear instructions, documenting failure modes, and building
+          repeatable workflows-- that&apos;s the software. Here&apos;s mine!
         </p>
 
-        <p className="text-sm text-gray-500 max-w-2xl mb-3">
+        <p className="text-sm text-gray-400 max-w-2xl mb-3">
           The orchestration skills get the most use. I usually have 5+
           Claude Code sessions running at once, and Jarvis, Manager, and
           Consult are how I keep track of what they&apos;re all doing.
@@ -378,7 +378,7 @@ export default function ClaudeSetupSection() {
           windows. For overnight builds I hand a spec to the autonomous-vm
           skill and check in the morning.
         </p>
-        <p className="text-sm text-gray-500 max-w-2xl mb-6">
+        <p className="text-sm text-gray-400 max-w-2xl mb-6">
           The corrections skills exist because Claude Code has habits that
           drive me crazy. It over-engineers, hedges when I want a direct
           answer, and writes prose that sounds like AI. So I built /vent to
@@ -394,22 +394,10 @@ export default function ClaudeSetupSection() {
             <span className="text-white font-semibold">
               Easiest way to install:
             </span>{" "}
-            Download the zip, then tell Claude Code{" "}
-            <code className="text-[#6CACE4] bg-black px-1.5 py-0.5 text-xs">
-              &quot;unzip this and put the skills and docs in the right
-              places&quot;
-            </code>
-            . Skills go in{" "}
-            <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-xs">
-              ~/.claude/skills/
-            </code>
-            , docs go wherever you keep reference material. Some files
-            reference paths specific to my system (e.g. my CLAUDE.md points to
-            docs in{" "}
-            <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-xs">
-              ~/path/to/
-            </code>
-            ) — Claude Code will spot these and update them for your setup.
+            Download All, extract the zip, and point Claude Code at it.
+            The zip includes a README with setup instructions that Claude
+            Code will read and follow — it&apos;ll ask you where to put things
+            and handle the rest.
           </p>
         </div>
 
