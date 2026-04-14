@@ -1,126 +1,129 @@
-"use client";
-import { useState } from "react";
+import ClaudeSetupSection from "./claude-setup-section";
+import { ProjectModal, ExperienceList } from "./home-client";
+
+const featuredProjects = [
+  {
+    name: "AlignEd",
+    description: "Two-sided AI education platform where teachers manage classrooms and assignments, and students turn their course materials into shareable study artifacts (flashcards, quizzes, LaTeX problem sets, podcasts). Sole engineer, built as Research Assistant at Columbia.",
+    technologies: ["Next.js", "TypeScript", "AI"],
+    embedUrl: "https://alnd.ai",
+  },
+  {
+    name: "Debt Vulture",
+    description: "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. Includes a multi-agent simulation engine where AI agents carry persistent memory, form insights through reflection, and negotiate under enforced information asymmetry. Domain-agnostic: same architecture runs bankruptcy, geopolitical, and M&A scenarios. First paying customer is a hedge fund.",
+    technologies: ["Next.js", "Python", "LangGraph", "Supabase", "PACER"],
+    previewImage: "/debt-vulture-sim.png",
+    link: "/debt-vulture",
+  },
+  {
+    name: "NLP Hallucination Mitigation",
+    description: "Three-stage pipeline (CoT distillation, abstention fine-tuning, RLVF) reducing LLM hallucinations in closed-book QA. 97.5% precision in hallucination detection; Selective F1 improved from 0.50 to 0.70.",
+    technologies: ["Python", "PyTorch", "HuggingFace", "LoRA/QLoRA", "RL"],
+    embedUrl: "/nlp-paper.pdf",
+  },
+  {
+    name: "NASA SUITS",
+    description: "Scaled team to 20 engineers; built AR astronaut guidance system tested at Johnson Space Center with NASA engineers.",
+    technologies: ["Unity", "C#", "HoloLens 2", "Snap Spectacles"],
+    previewImage: "/nasa-suits.webp",
+    link: "https://www.nasa.gov/learning-resources/spacesuit-user-interface-technologies-for-students/",
+  },
+];
+
+const otherProjects = [
+  {
+    name: "Josh-OS",
+    description: "AI agent with persistent memory, semantic search, and live voice mode. Integrates GitHub, Obsidian, Gmail, Calendar via tool-calling.",
+    technologies: ["Claude Agent SDK", "Next.js", "TypeScript", "Supabase", "Fly.io", "LiveKit"],
+    link: "https://agent.joshuahegstad.org",
+    details: ["Persistent memory and semantic search", "Live voice mode via LiveKit", "GitHub, Obsidian, Gmail, Calendar integration via tool-calling"],
+  },
+  {
+    name: "River",
+    description: "Physics-based spatial task scheduler where tasks are organic blobs drifting in a current. Claude Code controllable via MCP.",
+    technologies: ["TypeScript", "Canvas", "MCP"],
+    link: "https://taskriver.dev",
+    details: ["Physics-based spatial task scheduler", "Claude Code controllable via MCP", "Tasks are organic blobs drifting in a current"],
+  },
+  {
+    name: "Puriphico",
+    description: "Hand hygiene compliance monitoring dashboard for healthcare facilities.",
+    technologies: ["Next.js", "Supabase", "Recharts"],
+    link: "https://puriphico.com",
+    details: ["Real-time session tracking from IoT devices", "Customizable compliance thresholds", "Multi-location management with CSV export"],
+  },
+  {
+    name: "ArcaTracker",
+    description: "Mobile-first productivity tracker for focus sessions.",
+    technologies: ["Next.js", "React", "TypeScript"],
+    link: "https://arcatracker.com",
+    details: ["Log 'Lock-In' focus sessions", "Follow friends and track consistency", "Streak tracking and analytics"],
+  },
+  {
+    name: "Don't Fret!",
+    description: "AR guitar trainer for Snap Spectacles with live chord overlays.",
+    technologies: ["Lens Studio", "Snap Spectacles"],
+    details: ["Started as Flask web app with chord database", "Dynamically generated ASCII jazz chord diagrams", "Evolved to AR with live chord overlays"],
+  },
+];
+
+const experience = [
+  {
+    logo: "/logos/columbia.png",
+    company: "Columbia University",
+    role: "Research Assistant",
+    date: "Jun 2025 - Present",
+    summary: "Sole engineer on ALND.AI",
+    details: ["Sole engineer on ALND.AI, a two-sided AI education platform", "Teachers manage classrooms and assignments; students turn course materials into shareable study artifacts", "Flashcards, quizzes, LaTeX problem sets, podcasts"],
+  },
+  {
+    logo: "/logos/purepoker.svg",
+    company: "Pure Poker",
+    role: "First Intern",
+    date: "May - Aug 2025",
+    summary: "Payments, private games, AI avatars",
+    details: ["Shipped deposit/withdrawal system (first revenue), private games, and AI Avatars alongside CEO and CTO", "TypeScript, AWS Lambda, DynamoDB, CDK"],
+  },
+  {
+    logo: "/logos/columbia.png",
+    company: "AMLAH (Real Estate Startup)",
+    role: "Software Engineer Intern",
+    date: "Jan - May 2025",
+    summary: "Full-stack platform, cloud infrastructure",
+    details: ["Built and shipped the full-stack web platform (React, MongoDB, AWS EC2 CI/CD) ahead of schedule", "Managed cloud infrastructure"],
+  },
+  {
+    company: "Debt Vulture",
+    role: "Founder",
+    date: "Jan 2026 - Present",
+    summary: "AI agent simulation engine for distressed debt",
+    details: ["Built simulation engine where AI agents carry persistent memory, reflect, and negotiate under enforced information asymmetry", "Domain-agnostic: runs bankruptcy, geopolitical, and M&A scenarios", "First paying customer is a hedge fund"],
+  },
+  {
+    company: "Independent AI Tutoring",
+    role: "Tutor",
+    date: "Feb 2026 - Present",
+    summary: "AI tutoring for non-technical professionals",
+    details: ["Hands-on AI tutoring with an MD at Silver Point Capital and the Columbia Dean of Social Sciences", "Built custom tooling and documentation for each that turns Claude Code into a domain-specific expert"],
+  },
+  {
+    company: "Veritable",
+    role: "Founding Engineer",
+    date: "Jan - Mar 2026",
+    summary: "Biotech AI for rare disease identification",
+    details: ["Built demos across molecular, proteomic, and genomic capabilities at a biotech AI startup", "Tested and tuned SOTA ML system: Hopfield network retrieval accuracy and Mixture-of-Experts routing", "Pitched architecture to pharma executives and early-stage investors alongside the CEO"],
+  },
+  {
+    logo: "/logos/hess.png",
+    company: "Hess Corporation",
+    role: "Cybersecurity Intern",
+    date: "May - Aug 2024",
+    summary: "LLM tools, vulnerability analysis",
+    details: ["Built LLM tools to automate cybersecurity analysis", "Identified and documented 100+ network and device vulnerabilities"],
+  },
+];
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState<typeof otherProjects[0] | null>(null);
-  const [expandedJob, setExpandedJob] = useState<number | null>(null);
-
-  const featuredProjects = [
-    {
-      name: "AlignEd",
-      description: "AI education platform that generates study materials and assignments from any document.",
-      technologies: ["Next.js", "TypeScript", "AI"],
-      embedUrl: "https://alnd.ai"
-    },
-    {
-      name: "Debt Vulture",
-      description: "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. Includes a multi-agent simulation engine where AI agents negotiate bankruptcy proceedings — with memory, reflection, and causality tracking. Built in partnership with Standard Partners Fund LP.",
-      technologies: ["Next.js", "Python", "LangGraph", "Supabase", "PACER"],
-      previewImage: "/debt-vulture-sim.png",
-      link: "/debt-vulture"
-    },
-    {
-      name: "NLP Hallucination Mitigation",
-      description: "Teaching small language models to know what they don't know. Distilled reasoning from a 235B parameter teacher, trained the model to abstain on questions it would get wrong, then used reinforcement learning to tune the confidence threshold. 97.5% precision on detecting knowledge boundaries.",
-      technologies: ["Python", "PyTorch", "Qwen", "RL"],
-      embedUrl: "/nlp-paper.pdf"
-    },
-    {
-      name: "River",
-      description: "A personal task system that integrates with Claude Code. Tasks live in SQLite, flow between human and agent contexts, and carry energy/commitment scores. Built because every other task app treats AI agents and humans as separate workflows.",
-      technologies: ["Next.js", "TypeScript", "SQLite", "Claude Code"],
-      embedUrl: "https://taskriver.dev"
-    },
-    {
-      name: "Claude Code Skills",
-      description: "Custom skills I built for Claude Code — prompt engineering, multi-session orchestration, human writing, study guide generation, and more. Started with a full dashboard app (Codeception), then realized simple skills + recall replace complex UI. 11 skills, all downloadable.",
-      technologies: ["Claude Code", "Prompt Engineering", "Rust", "Python"],
-      embedUrl: "/skills",
-      link: "/skills"
-    },
-    {
-      name: "NASA SUITS",
-      description: "Co-led Columbia's team developing AR astronaut guidance system. Scaled software team 2x to 20 engineers. Implemented Agile workflows, secured funding via NASA & NY Space Grant proposals. Successfully tested at Johnson Space Center with NASA engineers.",
-      technologies: ["Unity", "C#", "HoloLens 2", "Snap Spectacles"],
-      previewImage: "/nasa-suits.webp",
-      link: "https://www.nasa.gov/learning-resources/spacesuit-user-interface-technologies-for-students/"
-    }
-  ];
-
-  const otherProjects = [
-    {
-      name: "Josh-OS",
-      description: "Personal AI assistant integrating Obsidian, GitHub, and web research via MCP.",
-      technologies: ["TypeScript", "Claude SDK", "MCP"],
-      link: "https://agent.joshuahegstad.org",
-      details: ["MCP server for Claude Code integration", "GitHub and Exa web search tools", "Audio transcription via Deepgram"]
-    },
-    {
-      name: "Puriphico",
-      description: "Hand hygiene compliance monitoring dashboard for healthcare facilities.",
-      technologies: ["Next.js", "Supabase", "Recharts"],
-      link: "https://puriphico.com",
-      details: ["Real-time session tracking from IoT devices", "Customizable compliance thresholds", "Multi-location management with CSV export"]
-    },
-    {
-      name: "ArcaTracker",
-      description: "Mobile-first productivity tracker for focus sessions.",
-      technologies: ["Next.js", "React", "TypeScript"],
-      link: "https://arcatracker.com",
-      details: ["Log 'Lock-In' focus sessions", "Follow friends and track consistency", "Streak tracking and analytics"]
-    },
-    {
-      name: "Don't Fret!",
-      description: "AR guitar trainer for Snap Spectacles with live chord overlays.",
-      technologies: ["Lens Studio", "Snap Spectacles"],
-      link: undefined,
-      details: ["Started as Flask web app with chord database", "Dynamically generated ASCII jazz chord diagrams", "Evolved to AR with live chord overlays"]
-    }
-  ];
-
-  const experience = [
-    {
-      logo: "/logos/columbia.png",
-      company: "Columbia University",
-      role: "Research Assistant",
-      date: "Jun 2025 - Present",
-      summary: "Developing AI research tools",
-      details: ["Building AI-powered education platform", "Study materials generation and personalized tutoring", "Next.js, TypeScript, Vercel AI SDK"]
-    },
-    {
-      logo: "/logos/purepoker.svg",
-      company: "Pure Poker",
-      role: "Early Software Engineer",
-      date: "May - Aug 2025",
-      summary: "Payments, private games, AI avatars",
-      details: ["Worked side-by-side with CEO & CTO from idea to production", "Built deposit/withdrawal flow and fees system (first revenue)", "Created private games and AI Avatar generation", "AWS Lambda, CloudWatch, DynamoDB"]
-    },
-    {
-      logo: "/logos/columbia.png",
-      company: "AMLAH (Columbia Build Lab)",
-      role: "Software Engineer Intern",
-      date: "Jan - May 2025",
-      summary: "Full-stack platform development",
-      details: ["Built platform with React, JavaScript, MongoDB", "Shipped website & waitlist ahead of schedule", "Managed AWS infrastructure (EC2, S3, Cognito)", "Fixed 10+ critical bugs and security vulnerabilities"]
-    },
-    {
-      logo: undefined,
-      company: "Standard Partners Fund LP",
-      role: "Software Engineer Contractor",
-      date: "Dec 2024 - Present",
-      summary: "Investor Goggles, Debt Vulture",
-      details: ["Created Investor Goggles AR platform with LLMs and financial APIs", "Built Debt Vulture bankruptcy monitoring platform in partnership", "Deployed and tested with hedge fund investors"]
-    },
-    {
-      logo: "/logos/hess.png",
-      company: "Hess Corporation",
-      role: "Cybersecurity Intern",
-      date: "May - Aug 2024",
-      summary: "LLM tools, vulnerability analysis",
-      details: ["Developed secure LLM tools for cybersecurity workflows", "Identified 100+ vulnerabilities", "Analyzed network traffic and device data"]
-    }
-  ];
-
   return (
     <main className="min-h-screen bg-black">
       {/* Sticky Nav */}
@@ -131,7 +134,7 @@ export default function Home() {
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors">Projects</a>
             <a href="#experience" className="text-gray-400 hover:text-white transition-colors">Experience</a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
-            <a href="/skills" className="text-gray-400 hover:text-white transition-colors">Claude Skills</a>
+            <a href="#claude-setup" className="text-gray-400 hover:text-white transition-colors">Claude Code Setup</a>
           </div>
         </div>
       </nav>
@@ -178,7 +181,6 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-12">Projects</h2>
 
-          {/* Featured Projects - Full Width Each */}
           <div className="space-y-8 mb-12">
             {featuredProjects.map((project) => (
               <div key={project.name} className="bg-gray-900/50 border border-gray-800 overflow-hidden">
@@ -222,140 +224,21 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Other Projects Grid */}
           <h3 className="text-xl font-semibold text-white mb-6">More Projects</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {otherProjects.map((project) => (
-              <div
-                key={project.name}
-                className="bg-gray-900/30 border border-gray-800 p-4 cursor-pointer hover:border-[#6CACE4]/50 transition-all"
-                onClick={() => setSelectedProject(project)}
-              >
-                <h4 className="text-white font-medium text-sm mb-1">{project.name}</h4>
-                <p className="text-gray-500 text-xs">Click to view</p>
-              </div>
-            ))}
-          </div>
+          <ProjectModal otherProjects={otherProjects} />
         </div>
       </section>
 
-      {/* Project Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={() => setSelectedProject(null)}>
-          <div className="bg-gray-900 border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-auto" onClick={(e) => e.stopPropagation()}>
-            {/* Live preview or image */}
-            {selectedProject.link ? (
-              <div className="h-[400px] bg-black">
-                <iframe
-                  src={selectedProject.link}
-                  title={selectedProject.name}
-                  className="w-full h-full"
-                />
-              </div>
-            ) : null}
-
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-white text-2xl font-semibold">{selectedProject.name}</h3>
-                <button onClick={() => setSelectedProject(null)} className="text-gray-400 hover:text-white">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              <p className="text-gray-400 mb-4">{selectedProject.description}</p>
-
-              {selectedProject.details && (
-                <ul className="space-y-2 mb-4">
-                  {selectedProject.details.map((detail, i) => (
-                    <li key={i} className="text-gray-300 text-sm flex items-start gap-2">
-                      <span className="text-[#6CACE4]">•</span>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {selectedProject.technologies.map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-gray-800 text-gray-300 text-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {selectedProject.link && (
-                <a
-                  href={selectedProject.link}
-                  target="_blank"
-                  className="inline-block bg-[#6CACE4] text-black px-4 py-2 font-medium hover:bg-[#6CACE4]/80 transition-all"
-                >
-                  Visit Site →
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Claude Code Setup Section */}
+      <ClaudeSetupSection />
 
       {/* Experience Section */}
       <section id="experience" className="py-20 px-6 bg-gray-900/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-12">Experience</h2>
 
-          <div className="space-y-2">
-            {experience.map((job, index) => (
-              <div key={index} className="bg-gray-900/50 border border-gray-800 overflow-hidden">
-                <div
-                  className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800/30 transition-all"
-                  onClick={() => setExpandedJob(expandedJob === index ? null : index)}
-                >
-                  <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-800 rounded">
-                    {job.logo ? (
-                      <img src={job.logo} alt={job.company} className="w-6 h-6 object-contain" />
-                    ) : (
-                      <span className="text-gray-600 text-xs">•</span>
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                      <div>
-                        <span className="text-white font-medium">{job.company}</span>
-                        <span className="text-gray-500 mx-2">·</span>
-                        <span className="text-gray-400">{job.role}</span>
-                      </div>
-                      <span className="text-gray-500 text-sm">{job.date}</span>
-                    </div>
-                    <p className="text-gray-500 text-sm">{job.summary}</p>
-                  </div>
-                  <svg
-                    className={`w-5 h-5 text-gray-500 transition-transform ${expandedJob === index ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
+          <ExperienceList experience={experience} />
 
-                {expandedJob === index && (
-                  <div className="px-4 pb-4 pl-18">
-                    <ul className="space-y-1 ml-14">
-                      {job.details.map((detail, i) => (
-                        <li key={i} className="text-gray-400 text-sm flex items-start gap-2">
-                          <span className="text-[#6CACE4]">•</span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Education */}
           <div className="mt-8 p-4 bg-[#012169]/20 border border-[#6CACE4]/20">
             <div className="flex items-center gap-4">
               <img src="/logos/columbia.png" alt="Columbia" className="w-10 h-10 object-contain" />
@@ -390,7 +273,6 @@ export default function Home() {
           <p className="text-gray-600 text-sm mt-12">© 2026 Joshua Hegstad</p>
         </div>
       </footer>
-
     </main>
   );
 }

@@ -33,6 +33,12 @@ const docs: Record<
       "The design document written before building the Jarvis skill. Architecture, data sources, behavior, and what was deliberately deferred.",
     file: "jarvis-spec.md",
   },
+  "claude-code-landscape": {
+    title: "Claude Code Landscape — March 2026",
+    description:
+      "Survey of the Claude Code ecosystem: power-user patterns, multi-agent orchestrators, memory tools, autonomous execution methods, and key people.",
+    file: "claude-code-landscape.md",
+  },
 };
 
 export function generateStaticParams() {
