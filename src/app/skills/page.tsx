@@ -246,14 +246,18 @@ export default function SkillsPage() {
               <span className="text-white font-semibold">Easiest way to install:</span>{" "}
               Download the zip, then tell Claude{" "}
               <code className="text-[#6CACE4] bg-black px-1.5 py-0.5 text-xs">
-                &quot;unzip this and put the skills in the right place&quot;
+                &quot;unzip this and put the skills and docs in the right places&quot;
               </code>
-              . Some skills reference files at paths specific to my system (e.g. my
-              CLAUDE.md points to docs in{" "}
+              . Skills go in{" "}
               <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-xs">
-                ~/OneDrive/Obsidian Vault/
+                ~/.claude/skills/
               </code>
-              ). Claude will spot these and update them for your setup.
+              , docs go wherever you keep reference material. Some files reference
+              paths specific to my system (e.g. my CLAUDE.md points to docs in{" "}
+              <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-xs">
+                ~/path/to/
+              </code>
+              ) — Claude will spot these and update them for your setup.
             </p>
           </div>
 
