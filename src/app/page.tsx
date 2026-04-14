@@ -1,5 +1,5 @@
 import ClaudeSetupSection from "./claude-setup-section";
-import { ProjectModal, ExperienceList } from "./home-client";
+import { ProjectModal, ResumeSection } from "./home-client";
 
 const featuredProjects = [
   {
@@ -14,6 +14,12 @@ const featuredProjects = [
     technologies: ["Next.js", "Python", "LangGraph", "Supabase", "PACER"],
     previewImage: "/debt-vulture-sim.png",
     link: "/debt-vulture",
+  },
+  {
+    name: "River",
+    description: "Physics-based spatial task scheduler where tasks are organic blobs drifting in a current. Claude Code controllable via MCP.",
+    technologies: ["TypeScript", "Canvas", "MCP"],
+    embedUrl: "https://taskriver.dev",
   },
   {
     name: "NLP Hallucination Mitigation",
@@ -39,13 +45,6 @@ const otherProjects = [
     details: ["Persistent memory and semantic search", "Live voice mode via LiveKit", "GitHub, Obsidian, Gmail, Calendar integration via tool-calling"],
   },
   {
-    name: "River",
-    description: "Physics-based spatial task scheduler where tasks are organic blobs drifting in a current. Claude Code controllable via MCP.",
-    technologies: ["TypeScript", "Canvas", "MCP"],
-    link: "https://taskriver.dev",
-    details: ["Physics-based spatial task scheduler", "Claude Code controllable via MCP", "Tasks are organic blobs drifting in a current"],
-  },
-  {
     name: "Puriphico",
     description: "Hand hygiene compliance monitoring dashboard for healthcare facilities.",
     technologies: ["Next.js", "Supabase", "Recharts"],
@@ -67,62 +66,6 @@ const otherProjects = [
   },
 ];
 
-const experience = [
-  {
-    logo: "/logos/columbia.png",
-    company: "Columbia University",
-    role: "Research Assistant",
-    date: "Jun 2025 - Present",
-    summary: "Sole engineer on ALND.AI",
-    details: ["Sole engineer on ALND.AI, a two-sided AI education platform", "Teachers manage classrooms and assignments; students turn course materials into shareable study artifacts", "Flashcards, quizzes, LaTeX problem sets, podcasts"],
-  },
-  {
-    logo: "/logos/purepoker.svg",
-    company: "Pure Poker",
-    role: "First Intern",
-    date: "May - Aug 2025",
-    summary: "Payments, private games, AI avatars",
-    details: ["Shipped deposit/withdrawal system (first revenue), private games, and AI Avatars alongside CEO and CTO", "TypeScript, AWS Lambda, DynamoDB, CDK"],
-  },
-  {
-    logo: "/logos/columbia.png",
-    company: "AMLAH (Real Estate Startup)",
-    role: "Software Engineer Intern",
-    date: "Jan - May 2025",
-    summary: "Full-stack platform, cloud infrastructure",
-    details: ["Built and shipped the full-stack web platform (React, MongoDB, AWS EC2 CI/CD) ahead of schedule", "Managed cloud infrastructure"],
-  },
-  {
-    company: "Debt Vulture",
-    role: "Founder",
-    date: "Jan 2026 - Present",
-    summary: "AI agent simulation engine for distressed debt",
-    details: ["Built simulation engine where AI agents carry persistent memory, reflect, and negotiate under enforced information asymmetry", "Domain-agnostic: runs bankruptcy, geopolitical, and M&A scenarios", "First paying customer is a hedge fund"],
-  },
-  {
-    company: "Independent AI Tutoring",
-    role: "Tutor",
-    date: "Feb 2026 - Present",
-    summary: "AI tutoring for non-technical professionals",
-    details: ["Hands-on AI tutoring with an MD at Silver Point Capital and the Columbia Dean of Social Sciences", "Built custom tooling and documentation for each that turns Claude Code into a domain-specific expert"],
-  },
-  {
-    company: "Veritable",
-    role: "Founding Engineer",
-    date: "Jan - Mar 2026",
-    summary: "Biotech AI for rare disease identification",
-    details: ["Built demos across molecular, proteomic, and genomic capabilities at a biotech AI startup", "Tested and tuned SOTA ML system: Hopfield network retrieval accuracy and Mixture-of-Experts routing", "Pitched architecture to pharma executives and early-stage investors alongside the CEO"],
-  },
-  {
-    logo: "/logos/hess.png",
-    company: "Hess Corporation",
-    role: "Cybersecurity Intern",
-    date: "May - Aug 2024",
-    summary: "LLM tools, vulnerability analysis",
-    details: ["Built LLM tools to automate cybersecurity analysis", "Identified and documented 100+ network and device vulnerabilities"],
-  },
-];
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
@@ -132,9 +75,9 @@ export default function Home() {
           <span className="text-white font-semibold">JH</span>
           <div className="flex gap-8 text-sm">
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors">Projects</a>
-            <a href="#experience" className="text-gray-400 hover:text-white transition-colors">Experience</a>
-            <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
             <a href="#claude-setup" className="text-gray-400 hover:text-white transition-colors">Claude Code Setup</a>
+            <a href="#resume" className="text-gray-400 hover:text-white transition-colors">Resume</a>
+            <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
           </div>
         </div>
       </nav>
@@ -232,28 +175,8 @@ export default function Home() {
       {/* Claude Code Setup Section */}
       <ClaudeSetupSection />
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6 bg-gray-900/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-12">Experience</h2>
-
-          <ExperienceList experience={experience} />
-
-          <div className="mt-8 p-4 bg-[#012169]/20 border border-[#6CACE4]/20">
-            <div className="flex items-center gap-4">
-              <img src="/logos/columbia.png" alt="Columbia" className="w-10 h-10 object-contain" />
-              <div>
-                <span className="text-white font-medium">Columbia University</span>
-                <span className="text-gray-500 mx-2">·</span>
-                <span className="text-gray-400">BS Computer Science, Applied Math Minor</span>
-                <span className="text-gray-500 mx-2">·</span>
-                <span className="text-gray-500 text-sm">2023 - 2026</span>
-                <p className="text-[#6CACE4] text-sm">C.P. Davis Scholar | National Merit Scholar</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Resume Section */}
+      <ResumeSection />
 
       {/* Contact Section */}
       <footer id="contact" className="py-20 px-6">

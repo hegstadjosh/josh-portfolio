@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ReactNode } from "react";
+import { useState, useEffect } from "react";
 
 interface OtherProject {
   name: string;
@@ -9,14 +9,6 @@ interface OtherProject {
   details?: string[];
 }
 
-interface Job {
-  logo?: string;
-  company: string;
-  role: string;
-  date: string;
-  summary: string;
-  details: string[];
-}
 
 export function ProjectModal({
   otherProjects,
@@ -134,76 +126,37 @@ export function ProjectModal({
   );
 }
 
-export function ExperienceList({ experience }: { experience: Job[] }) {
-  const [expandedJob, setExpandedJob] = useState<number | null>(null);
+export function ResumeSection() {
+  const [resumeUrl, setResumeUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/resume-url")
+      .then((res) => res.json())
+      .then((data: { url: string }) => setResumeUrl(data.url))
+      .catch(() => {});
+  }, []);
 
   return (
-    <div className="space-y-2">
-      {experience.map((job, index) => (
-        <div
-          key={index}
-          className="bg-gray-900/50 border border-gray-800 overflow-hidden"
-        >
-          <div
-            className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800/30 transition-all"
-            onClick={() =>
-              setExpandedJob(expandedJob === index ? null : index)
-            }
-          >
-            <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-800 rounded">
-              {job.logo ? (
-                <img
-                  src={job.logo}
-                  alt={job.company}
-                  className="w-6 h-6 object-contain"
-                />
-              ) : (
-                <span className="text-gray-600 text-xs">•</span>
-              )}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <div>
-                  <span className="text-white font-medium">{job.company}</span>
-                  <span className="text-gray-500 mx-2">·</span>
-                  <span className="text-gray-400">{job.role}</span>
-                </div>
-                <span className="text-gray-500 text-sm">{job.date}</span>
-              </div>
-              <p className="text-gray-500 text-sm">{job.summary}</p>
-            </div>
-            <svg
-              className={`w-5 h-5 text-gray-500 transition-transform ${expandedJob === index ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+    <section id="resume" className="py-20 px-6 bg-gray-900/30">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-8">Resume</h2>
+        {resumeUrl ? (
+          <div className="bg-white" style={{ aspectRatio: "8.5/11" }}>
+            <iframe
+              src={resumeUrl}
+              title="Resume"
+              className="w-full h-full border-0"
+            />
           </div>
-
-          {expandedJob === index && (
-            <div className="px-4 pb-4 pl-18">
-              <ul className="space-y-1 ml-14">
-                {job.details.map((detail, i) => (
-                  <li
-                    key={i}
-                    className="text-gray-400 text-sm flex items-start gap-2"
-                  >
-                    <span className="text-[#6CACE4]">•</span>
-                    {detail}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+        ) : (
+          <div
+            className="bg-gray-800/50 border border-gray-800 flex items-center justify-center"
+            style={{ aspectRatio: "8.5/11" }}
+          >
+            <p className="text-gray-500">Loading resume...</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
