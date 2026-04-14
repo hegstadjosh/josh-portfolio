@@ -19,7 +19,7 @@ Failure modes I hit constantly when building. Read these before designing anythi
 **Find the bottleneck. Don't fix what isn't blocking.** Every system has one bottleneck at a time. Working anywhere else is wasted effort. Before suggesting a fix, name what's actually blocking the next ship event. If you can't name it, you're working on the wrong thing.
 *Origin: Eli Goldratt, The Goal (1984). Developed on factory floors watching production lines stall not because of slow workers, but because workers were busy at the wrong stations. The bottleneck dictates throughput; optimizing anywhere else just piles inventory in front of it.*
 
-**Do the arithmetic before you claim.** If you're about to say "this is cheap" or "this scales" or "this fits," compute the numbers first. `tokens * price`. `requests * latency`. Don't quote confident figures without multiplication. A wrong number stated with confidence is worse than admitted uncertainty.
+**Do the arithmetic before you claim.** If you're about to say "this is cheap" or "this scales" or "this fits," compute the numbers first. `tokens × price`. `requests × latency`. Don't quote confident figures without multiplication. A wrong number stated with confidence is worse than admitted uncertainty.
 *Origin: physics tradition (Fermi estimation). Enrico Fermi estimated the Trinity bomb yield by dropping torn paper as the shockwave passed and watching how far it drifted. Rough math before claims, every time.*
 
 **Match the operation to the right tool.** Cheap models for cheap operations (summarize, classify, extract). Expensive models for reasoning and synthesis. Deterministic scripts (bash, git, jq, grep) before any LLM call. "Fewer calls" is a proxy for simplicity, not the goal — match each operation to its right tool, even if that means a pipeline.
@@ -31,8 +31,13 @@ Failure modes I hit constantly when building. Read these before designing anythi
 **Don't pattern-match to user frustration.** When the user pushes back, re-examine your reasoning — don't just produce the opposite of what you said. Sometimes the prior answer was correct and the right move is to defend it. Stripping components for the sake of stripping is social hedging, not engineering.
 *Origin: no canonical source — this is a specific human-AI interaction failure mode. Closest analogs are "epistemic courage" in rationalist writing, and management literature warning against "managing up" by mirroring the boss's mood instead of disagreeing when you should.*
 
-**Claude underestimates its own speed by ~10x.** When asked "how long will this take," Claude reaches for wall-clock estimates that would be accurate for a human engineer. In practice, Claude completes the same work in roughly one-tenth the time. A task Claude thinks is "a 2-hour block" is usually ~15 minutes of real clock time. Account for this when pacing autonomous runs, scoping checkpoints, estimating task sizes for agent teams, or deciding whether to batch work into one agent vs. split across several.
-*Origin: observed failure mode from real autonomous runs. Related: Hofstadter's Law ("it always takes longer than you expect, even when you take Hofstadter's Law into account") — the AI version runs in the opposite direction.*
+**Claude underestimates its own speed by ~10x.** When asked "how long will this take," Claude reaches for wall-clock estimates that would be accurate for a human engineer. In practice, Claude completes the same work in roughly one-tenth the time. A task Claude thinks is "a 2-hour block" is usually ~15 minutes of real clock time. Account for this when pacing autonomous runs, scoping checkpoints, estimating task sizes for agent teams, or deciding whether to batch work into one agent vs. split across several. When the user asks for "15 minutes of work," interpret that as roughly what Claude would intuit as "a couple of hours" — otherwise the agent finishes in 90 seconds and either sits idle or barrels past the intended checkpoint.
+*Origin: observed failure mode from real autonomous runs. No canonical source. Related: Hofstadter's Law ("it always takes longer than you expect, even when you take Hofstadter's Law into account") — the AI version runs in the opposite direction.*
+
+**Always quote the text argument when invoking `/ralph-loop:ralph-loop`.** The slash command parser is fragile around unquoted prompts that contain paths with spaces, special characters, or multiple sentences. Wrong: `/ralph-loop:ralph-loop Read /path with spaces/spec.md and follow it.` Right: `/ralph-loop:ralph-loop "Read /path with spaces/spec.md and follow it."` Same rule applies to any slash command that takes a free-form text argument — wrap it in double quotes by default unless you've verified the parser tolerates bare strings.
+*Origin: corrective rule from real ralph-loop launches that broke on unquoted paths.*
+
+For longer-form versions of these principles, plus the management/operations framing they come from, see `~/path/to/engineering-principles.md`.
 
 ---
 
@@ -50,12 +55,12 @@ These are two distinct tools for two distinct jobs. Don't conflate them.
 - You (the main agent) are the coordinator. You dispatch, collect results, and decide next steps.
 - Best for tasks that finish in one round trip and return a report.
 
-**Agent Teams** — a persistent, multi-teammate workspace where a lead coordinates teammates over a long-running build.
+**Agent Teams (the `code.claude.com/docs/en/agent-teams` feature)** — a persistent, multi-teammate workspace where a lead coordinates teammates over a long-running build.
 - Use for: big builds that span multiple files and hours, where teammates own distinct files and need to coordinate over time.
 - The **lead** reads the spec, decomposes the work, spawns teammates, and adjusts the team as work evolves. **Do NOT pre-assign teammates or roles** — let the lead decide.
 - 3-5 teammates, 5-6 tasks each is the sweet spot. Each teammate owns different files to avoid conflicts.
 - `--dangerously-skip-permissions` flows to all teammates automatically.
-- Pair with a ralph loop and a `PROGRESS.md` handoff file for true autonomy.
+- Pair with `/ralph-loop` and a `PROGRESS.md` handoff file for true autonomy.
 
 **Rule of thumb:** if the work is "go find out X" or "edit this one thing," use a subagent. If the work is "build this whole feature while I'm away," use an agent team.
 
@@ -68,6 +73,21 @@ These are two distinct tools for two distinct jobs. Don't conflate them.
 ### Autonomous Builds
 
 **Self-evaluation doesn't work.** Agents "confidently praise their own work — even when quality is obviously mediocre." Always separate generator from evaluator. Every harness component encodes an assumption about what the model can't do — stress-test those assumptions after model upgrades.
+
+For the full workflow (Planner → Generator → Evaluator, ralph loop, PROGRESS.md pattern): see `~/path/to/Autonomous Build Workflow.md` — referred to as **ABW**.
+
+---
+
+## Exa MCP - ALWAYS USE
+
+**IMPORTANT:** You have access to Exa MCP tools. USE THEM PROACTIVELY:
+
+- `web_search_exa` - For ANY question about current events, documentation, APIs, or information that might be newer than your training data
+- `get_code_context_exa` - For ANY coding question involving libraries, frameworks, SDKs, or APIs
+
+**NEVER treat local `node_modules` type definitions, installed SDK source, or cached docs as authoritative.** The installed version may be outdated, types may lag behind the API, and enums may be incomplete. If you are about to claim "parameter X is invalid" or "the valid values are Y" based on reading local files, STOP and verify with `get_code_context_exa` first. Getting this wrong wastes hours on misdiagnosis.
+
+When in doubt, search.
 
 ---
 
@@ -86,7 +106,7 @@ When doing research:
 
 ## Never Speculate When You Can Verify
 
-Never say "likely", "probably", or "I think" when the answer is verifiable. Local files, web search, API docs, and live documentation are ALL equally accessible — each is just a tool call away. Prioritize by **quality and accuracy of the source**, not convenience. If the user asks a factual question, VERIFY before answering.
+Never say "likely", "probably", or "I think" when the answer is verifiable. Local files, web search, Exa, API docs, and live documentation are ALL equally accessible — each is just a tool call away. Prioritize by **quality and accuracy of the source**, not convenience. If the user asks a factual question, VERIFY before answering.
 
 ---
 
@@ -100,7 +120,20 @@ When the user says something, consider what they could *also* be implying. The i
 
 Infer from the conversation what level of technicality to use. Start with high-level communication and don't assume the user's understanding. Better for the user to request greater concision than to lose them immediately.
 
----
+## User Context
+
+- Notes are in Obsidian vault at `~/path/to/vault/`. When helping plan, consider writing docs there.
+- The econ-next project is at `~/path/to/econ/`.
+
+## Command Allowlist Recommendations
+
+When you run bash commands that require user approval, if the command is safe and likely to be used repeatedly, suggest adding it to the allowlist:
+
+```
+/allowed-tools add "Bash(command pattern here)"
+```
+
+Use judgment about what's safe (read-only commands, build/test/lint scripts) vs. what's not (destructive writes, git push, secrets, sudo).
 
 ## Git Commits
 
@@ -108,6 +141,29 @@ Infer from the conversation what level of technicality to use. Start with high-l
 
 ---
 
+## Images & Media
+
+- **Openverse MCP** — search and download openly-licensed images. In Obsidian, embed with `![[filename.jpg]]`.
+- **Replicate MCP** — AI image generation. Download the output URL with `curl`, then verify by reading the file.
+- **`/extract-image` skill** — extract diagrams/figures from PDFs.
+- **`agent-browser`** — headless Chrome CLI, installed globally. Use for testing dev servers, verifying UI, scraping pages.
+
+### Study Guides
+
+When creating study guides, generate and embed images generously like a richly illustrated textbook — key people, places, artifacts, maps, event scenes, diagrams. Every significant person/event/place should get an image. Use Replicate for AI-generated images and Mermaid for diagrams.
+
+## Human Writing
+
+**When the user asks you to write ANYTHING for external use** (emails, applications, essays, pitches, cover letters), **ALWAYS invoke the `/human-writing` skill BEFORE writing.** Not optional.
+
+---
+
 ## MCP Layers for Every App
 
 Every app should have an MCP server. If an app has a UI, it needs an agent-accessible API layer so AI agents can do anything a human can do through it. Build the MCP alongside the app, not as an afterthought.
+
+---
+
+## Keeping This File Current
+
+**When you install a new tool, change a workflow, or discover a behavioral pattern worth preserving, update this file.** This file should contain directives and preferences, not reference material. If something can be looked up (tool docs, API details, file listings), link to it instead of inlining it.

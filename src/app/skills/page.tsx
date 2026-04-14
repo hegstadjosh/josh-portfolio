@@ -229,7 +229,7 @@ export default function SkillsPage() {
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Claude Code Skills
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mb-8">
+          <p className="text-lg text-gray-400 max-w-2xl mb-6">
             Custom skills I&apos;ve built for{" "}
             <a
               href="https://claude.ai/code"
@@ -238,20 +238,48 @@ export default function SkillsPage() {
             >
               Claude Code
             </a>
-            . Click any skill to see what it does, or just download. Drop into{" "}
-            <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-sm">
-              ~/.claude/skills/
-            </code>{" "}
-            and they work immediately.
+            . Click any skill to see what it does, or just download.
           </p>
 
-          <a
-            href="/skills/all-skills.zip"
-            className="inline-flex items-center gap-2 bg-[#6CACE4] text-black px-6 py-3 font-medium hover:bg-[#6CACE4]/80 transition-all"
-          >
-            <DownloadIcon />
-            Download All ({skills.length} skills)
-          </a>
+          <div className="bg-gray-900/50 border border-gray-700 p-4 max-w-2xl mb-8">
+            <p className="text-gray-300 text-sm leading-relaxed">
+              <span className="text-white font-semibold">Easiest way to install:</span>{" "}
+              Download the zip, then tell Claude{" "}
+              <code className="text-[#6CACE4] bg-black px-1.5 py-0.5 text-xs">
+                &quot;unzip this and put the skills in the right place&quot;
+              </code>
+              . Some skills reference files at paths specific to my system (e.g. my
+              CLAUDE.md points to docs in{" "}
+              <code className="text-gray-300 bg-gray-800 px-1.5 py-0.5 text-xs">
+                ~/OneDrive/Obsidian Vault/
+              </code>
+              ). Claude will spot these and update them for your setup.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="/skills/all.zip"
+              className="inline-flex items-center gap-2 bg-[#6CACE4] text-black px-6 py-3 font-medium hover:bg-[#6CACE4]/80 transition-all"
+            >
+              <DownloadIcon />
+              Download All
+            </a>
+            <a
+              href="/skills/all-skills.zip"
+              className="inline-flex items-center gap-2 bg-transparent text-[#6CACE4] border border-[#6CACE4] px-6 py-3 font-medium hover:bg-[#6CACE4]/10 transition-all"
+            >
+              <DownloadIcon />
+              Skills Only
+            </a>
+            <a
+              href="/skills/all-docs.zip"
+              className="inline-flex items-center gap-2 bg-transparent text-[#6CACE4] border border-[#6CACE4] px-6 py-3 font-medium hover:bg-[#6CACE4]/10 transition-all"
+            >
+              <DownloadIcon />
+              Docs Only
+            </a>
+          </div>
         </div>
       </header>
 
@@ -443,58 +471,64 @@ export default function SkillsPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link
-              href="/skills/docs/claude-md"
-              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
-            >
-              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
-                My CLAUDE.md
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                The global instructions file that shapes how Claude Code
-                behaves. Engineering principles, agent guidance, and the rules
-                that prevent recurring failure modes.
-              </p>
-            </Link>
-            <Link
-              href="/skills/docs/engineering-principles"
-              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
-            >
-              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
-                Engineering Principles
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                19 principles from operations, lean, and management applied to
-                agent workflows. Theory of Constraints, walking skeletons,
-                generator/evaluator separation, and more.
-              </p>
-            </Link>
-            <Link
-              href="/skills/docs/autonomous-build-workflow"
-              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
-            >
-              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
-                Autonomous Build Workflow
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                The full playbook for autonomous overnight builds — agent teams,
-                ralph loops, PROGRESS.md handoffs, and the
-                Planner/Generator/Evaluator pattern.
-              </p>
-            </Link>
-            <Link
-              href="/skills/docs/jarvis-spec"
-              className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group block"
-            >
-              <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
-                Jarvis Design Spec
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                The design document written before building the Jarvis skill.
-                How to spec an agent skill — architecture, data sources,
-                behavior, and what to deliberately defer.
-              </p>
-            </Link>
+            {[
+              {
+                slug: "claude-md",
+                title: "My CLAUDE.md",
+                description:
+                  "The global instructions file that shapes how Claude Code behaves. Engineering principles, agent guidance, and the rules that prevent recurring failure modes.",
+              },
+              {
+                slug: "engineering-principles",
+                title: "Engineering Principles",
+                description:
+                  "19 principles from operations, lean, and management applied to agent workflows. Theory of Constraints, walking skeletons, generator/evaluator separation, and more.",
+              },
+              {
+                slug: "autonomous-build-workflow",
+                title: "Autonomous Build Workflow",
+                description:
+                  "The full playbook for autonomous overnight builds — agent teams, ralph loops, PROGRESS.md handoffs, and the Planner/Generator/Evaluator pattern.",
+              },
+              {
+                slug: "jarvis-spec",
+                title: "Jarvis Design Spec",
+                description:
+                  "The design document written before building the Jarvis skill. How to spec an agent skill — architecture, data sources, behavior, and what to deliberately defer.",
+              },
+            ].map((doc) => (
+              <div
+                key={doc.slug}
+                className="bg-gray-900/50 border border-gray-800 p-5 hover:border-[#6CACE4]/50 transition-all group"
+              >
+                <Link
+                  href={`/skills/docs/${doc.slug}`}
+                  className="block mb-3"
+                >
+                  <h3 className="text-white font-semibold group-hover:text-[#6CACE4] transition-colors mb-2">
+                    {doc.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {doc.description}
+                  </p>
+                </Link>
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={`/skills/docs/${doc.slug}`}
+                    className="text-gray-500 text-xs hover:text-gray-300 transition-colors"
+                  >
+                    Read →
+                  </Link>
+                  <a
+                    href={`/skills/${doc.slug}.zip`}
+                    className="text-[#6CACE4] hover:text-white transition-colors flex-shrink-0"
+                    title={`Download ${doc.title}`}
+                  >
+                    <DownloadIcon />
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
