@@ -351,7 +351,7 @@ export default function ClaudeSetupSection() {
         <h2 className="text-3xl font-bold text-white mb-4">
           Claude Code Setup
         </h2>
-        <p className="text-lg text-gray-400 max-w-2xl mb-6">
+        <p className="text-base text-gray-400 max-w-2xl mb-6">
           I tutor non-technical professionals on AI. The thing I keep
           learning:{" "}
           <a
@@ -366,7 +366,7 @@ export default function ClaudeSetupSection() {
           repeatable workflows-- that&apos;s the software. Here&apos;s mine!
         </p>
 
-        <p className="text-sm text-gray-400 max-w-2xl mb-3">
+        <p className="text-base text-gray-400 max-w-2xl mb-3">
           The orchestration skills get the most use. I usually have 5+
           Claude Code sessions running at once, and Jarvis, Manager, and
           Consult are how I keep track of what they&apos;re all doing.
@@ -378,7 +378,7 @@ export default function ClaudeSetupSection() {
           windows. For overnight builds I hand a spec to the autonomous-vm
           skill and check in the morning.
         </p>
-        <p className="text-sm text-gray-400 max-w-2xl mb-6">
+        <p className="text-base text-gray-400 max-w-2xl mb-6">
           The corrections skills exist because Claude Code has habits that
           drive me crazy. It over-engineers, hedges when I want a direct
           answer, and writes prose that sounds like AI. So I built /vent to
