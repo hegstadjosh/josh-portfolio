@@ -41,7 +41,7 @@ const otherProjects = [
     name: "Josh-OS",
     description: "AI agent with persistent memory, semantic search, and live voice mode. Integrates GitHub, Obsidian, Gmail, Calendar via tool-calling.",
     technologies: ["Claude Agent SDK", "Next.js", "TypeScript", "Supabase", "Fly.io", "LiveKit"],
-    link: "https://agent.joshuahegstad.org",
+    demoImages: ["/josh-os-demo-1.png", "/josh-os-demo-2.png"],
     details: ["Persistent memory and semantic search", "Live voice mode via LiveKit", "GitHub, Obsidian, Gmail, Calendar integration via tool-calling"],
   },
   {

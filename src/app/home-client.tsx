@@ -6,6 +6,7 @@ interface OtherProject {
   description: string;
   technologies: string[];
   link?: string;
+  demoImages?: string[];
   details?: string[];
 }
 
@@ -45,7 +46,18 @@ export function ProjectModal({
             className="bg-gray-900 border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            {selectedProject.link ? (
+            {selectedProject.demoImages && selectedProject.demoImages.length > 0 ? (
+              <div className="bg-black p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {selectedProject.demoImages.map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={selectedProject.name}
+                    className="w-full h-auto object-contain"
+                  />
+                ))}
+              </div>
+            ) : selectedProject.link ? (
               <div className="h-[400px] bg-black">
                 <iframe
                   src={selectedProject.link}
