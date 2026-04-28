@@ -16,12 +16,6 @@ const featuredProjects = [
     link: "/debt-vulture",
   },
   {
-    name: "River",
-    description: "Physics-based spatial task scheduler where tasks are organic blobs drifting in a current. Claude Code controllable via MCP.",
-    technologies: ["TypeScript", "Canvas", "MCP"],
-    embedUrl: "https://taskriver.dev",
-  },
-  {
     name: "NLP Hallucination Mitigation",
     description: "Three-stage pipeline (CoT distillation, abstention fine-tuning, RLVF) reducing LLM hallucinations in closed-book QA. 97.5% precision in hallucination detection; Selective F1 improved from 0.50 to 0.70.",
     technologies: ["Python", "PyTorch", "HuggingFace", "LoRA/QLoRA", "RL"],
