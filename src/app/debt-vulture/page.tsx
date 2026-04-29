@@ -1,29 +1,6 @@
 "use client";
 import Link from "next/link";
 
-const screenshots = [
-  {
-    src: "/debt-vulture/sim-lab.png",
-    alt: "Completed simulation showing 5 agents, 57 ticks, 46 beats, and $17 estimated cost",
-    caption: "A completed Serta Simmons simulation — 5 agents negotiated over 46 beats, producing 967 causality nodes",
-  },
-  {
-    src: "/debt-vulture/sim-timeline.png",
-    alt: "Timeline view with expanded beat showing agent actions, messages, and reflections",
-    caption: "Timeline with an expanded beat — agents take actions, exchange messages, and form reflections in real time",
-  },
-  {
-    src: "/debt-vulture/sim-graph.png",
-    alt: "Graph view showing all 5 agents' actions, messages, and reflections across time",
-    caption: "Graph view — actions, messages, and reflections across all agents, with causality arrows showing influence",
-  },
-  {
-    src: "/debt-vulture/sim-graph-2.png",
-    alt: "Graph view zoomed into a later beat showing coalition formation and strategic maneuvering",
-    caption: "A later beat — agents form coalitions, exchange legal strategy, and the God agent generates world events",
-  },
-];
-
 export default function DebtVulturePage() {
   return (
     <main className="min-h-screen bg-black">
@@ -55,8 +32,9 @@ export default function DebtVulturePage() {
             </div>
           </div>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Bankruptcy intelligence for distressed debt investors, built around a
-            multi-agent simulation engine that has no direct competitor.
+            Bankruptcy intelligence for distressed debt investors. Monitors PACER
+            filings in real time, extracts structured data from legal documents,
+            and maps affected public companies.
           </p>
         </div>
       </header>
@@ -65,10 +43,10 @@ export default function DebtVulturePage() {
       <section className="px-6 pb-12">
         <div className="max-w-3xl mx-auto space-y-6 text-gray-300 leading-relaxed">
           <p>
-            It started as a simple monitoring tool. Hedge fund investors in distressed
-            debt were paying $30k-100k/year to incumbents like Octus and 9fin for
-            bankruptcy filing alerts. We built a PACER scraper, a filing search
-            dashboard, and email alerts — the same core product for $500-2k/month.
+            Hedge fund investors in distressed debt were paying $30k-100k/year to
+            incumbents like Octus and 9fin for bankruptcy filing alerts. We built a
+            PACER scraper, a filing search dashboard, and email alerts — the same
+            core product for $500-2k/month.
           </p>
 
           <p>
@@ -78,82 +56,12 @@ export default function DebtVulturePage() {
             to take analysts hours.
           </p>
 
-          <p>
-            But the real question investors kept asking was: <em>what happens next?</em>{" "}
-            Not &quot;what has been filed&quot; but &quot;if I buy this tranche, what
-            are the likely outcomes?&quot; That&apos;s a simulation problem. So we
-            started building agents that could represent the competing parties in a
-            bankruptcy — creditors, debtors, sponsors, committees — and negotiate
-            against each other.
-          </p>
-
-          <p>
-            The early version was bankruptcy-specific. But as we built the cognitive
-            architecture — memory systems, an omniscient &quot;God agent&quot; referee,
-            event-driven time, causality tracking — we realized the engine had nothing
-            to do with bankruptcy. All the domain knowledge lived in the scenario
-            description. The engine just provided cognition, memory, and consequences.
-            Swap the scenario from a bankruptcy to a geopolitical crisis or a boardroom
-            negotiation, and it works the same way.
-          </p>
-
-          <p>
-            So we made it domain-agnostic. The simulation engine is now a general-purpose
-            multi-agent sandbox. Agents have{" "}
-            <span className="text-white">generative-agents-style memory</span> (adapted
-            from Park et al. 2023) with importance scoring and reflections.
-            Time is{" "}
-            <span className="text-white">continuous, not tick-based</span> — the engine
-            jumps to the next interesting moment. Every action and consequence is tracked
-            in a{" "}
-            <span className="text-white">typed causality graph</span>. You can{" "}
-            <span className="text-white">branch simulations</span> to explore
-            counterfactuals. And the whole thing is accessible via a{" "}
-            <span className="text-white">27-tool MCP server</span> so any AI agent can
-            run simulations programmatically.
-          </p>
-
-          <p>
-            It ships with five historical bankruptcy presets — Serta Simmons, J.Crew,
-            Hertz, Toys R Us — plus a quick demo scenario. But users can define
-            anything. The frontend is a 7-panel lab IDE with live event streams,
-            pacing metrics, agent inspection, and an interactive causality graph.
-          </p>
-
           <p className="text-gray-500">
-            We surveyed the landscape in March 2026. Nobody has built a productized
-            multi-agent simulation for distressed debt — or any negotiation domain —
-            with real capital structure data and game-theoretic reasoning. The closest
-            things are academic prototypes.
+            The simulation engine that grew out of this work — domain-agnostic
+            multi-agent sandbox with persistent memory, reflection, and causality
+            tracking — has been spun out as its own product:{" "}
+            <a href="https://simetic.com" target="_blank" rel="noopener" className="text-[#6CACE4] hover:underline">simetic.com</a>.
           </p>
-        </div>
-      </section>
-
-      {/* Screenshots */}
-      <section className="px-6 pb-16">
-        <div className="max-w-3xl mx-auto">
-          <div className="space-y-6">
-            {screenshots.map((shot, i) => (
-              <div key={i} className="bg-gray-900/50 border border-gray-800 overflow-hidden">
-                <div className="aspect-video bg-gray-950 flex items-center justify-center">
-                  <img
-                    src={shot.src}
-                    alt={shot.alt}
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.parentElement!.innerHTML =
-                        '<div class="text-gray-600 text-sm p-8 text-center">Screenshot placeholder<br/><code class="text-gray-500">public' + shot.src + '</code></div>';
-                    }}
-                  />
-                </div>
-                <div className="px-4 py-3">
-                  <p className="text-gray-500 text-sm">{shot.caption}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -162,9 +70,8 @@ export default function DebtVulturePage() {
         <div className="max-w-3xl mx-auto">
           <div className="flex flex-wrap gap-2">
             {[
-              "Next.js", "React", "Python", "FastAPI", "LangGraph",
-              "Supabase", "PACER", "Vercel AI Gateway", "Docker",
-              "MCP", "SSE", "Dockview", "@xyflow/react",
+              "Next.js", "React", "Python", "FastAPI",
+              "Supabase", "PACER", "CourtListener", "Docker",
             ].map((t) => (
               <span key={t} className="px-3 py-1 bg-gray-800 text-gray-400 text-sm">
                 {t}

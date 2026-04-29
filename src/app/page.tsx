@@ -10,10 +10,17 @@ const featuredProjects = [
   },
   {
     name: "Debt Vulture",
-    description: "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. Includes a multi-agent simulation engine where AI agents carry persistent memory, form insights through reflection, and negotiate under enforced information asymmetry. Domain-agnostic: same architecture runs bankruptcy, geopolitical, and M&A scenarios. First paying customer is a hedge fund.",
-    technologies: ["Next.js", "Python", "LangGraph", "Supabase", "PACER"],
-    previewImage: "/debt-vulture-sim.png",
+    description: "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. First paying customer is a hedge fund.",
+    technologies: ["Next.js", "Python", "Supabase", "PACER", "CourtListener"],
+    embedUrl: "https://debtvulture.com",
     link: "/debt-vulture",
+  },
+  {
+    name: "Simetic",
+    description: "Multi-agent simulation laboratory. AI agents carry persistent memory, form insights through reflection, and negotiate under enforced information asymmetry. Domain-agnostic — runs bankruptcy, geopolitical, and corporate negotiation scenarios. BYOK so users bring their own LLM provider keys.",
+    technologies: ["Next.js", "Python", "LangGraph", "FastAPI", "AWS Fargate", "MCP"],
+    embedUrl: "https://simetic.com",
+    link: "https://simetic.com",
   },
   {
     name: "NLP Hallucination Mitigation",
