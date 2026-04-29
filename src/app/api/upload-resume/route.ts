@@ -4,6 +4,22 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
+    const expectedToken = process.env.RESUME_UPLOAD_TOKEN;
+    if (!expectedToken) {
+      console.error('RESUME_UPLOAD_TOKEN not configured');
+      return NextResponse.json(
+        { error: 'Server misconfigured' },
+        { status: 500 }
+      );
+    }
+    const authHeader = request.headers.get('authorization') ?? '';
+    const providedToken = authHeader.startsWith('Bearer ')
+      ? authHeader.slice(7)
+      : '';
+    if (providedToken !== expectedToken) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const filename = searchParams.get('filename') ?? 'joshua-hegstad-resume.pdf';
 
