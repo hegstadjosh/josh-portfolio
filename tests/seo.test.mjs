@@ -53,7 +53,7 @@ test("homepage omits the resume and renders a real paper preview", () => {
   const projects = read("src/app/project-data.ts");
   assert.doesNotMatch(homepage, /href="#resume"|<ResumeSection/);
   assert.doesNotMatch(featuredProjects, /bg-gradient-to-br/);
-  assert.match(projects, /previewImage: "\/nlp-paper-preview\.png"/);
+  assert.match(projects, /previewImage: "\/nlp-paper-title-preview\.png"/);
   assert.equal(
     existsSync(new URL("../src/app/api/resume-url/route.ts", import.meta.url)),
     false,
