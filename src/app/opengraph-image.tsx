@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Joshua Hegstad, Co-Founder and CTO";
+export const alt = "Joshua Hegstad, Co-Founder";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
           Joshua Hegstad
         </div>
         <div style={{ color: "#d1d5db", fontSize: 36, marginTop: 22 }}>
-          Co-Founder &amp; CTO. Building an AI history company.
+          Co-Founder. Building an AI history company.
         </div>
       </div>
     ),

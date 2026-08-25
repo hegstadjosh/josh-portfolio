@@ -6,10 +6,10 @@ Replace the placeholders below with the coordinated launch values. Keep this fil
 
 1. In `src/app/site.ts`, replace the category-only description with:
 
-   `Joshua Hegstad is Co-Founder & CTO of <COMPANY_NAME>, building <PRODUCT_NAME>. Full stack AI engineer. Computer Science at Columbia University.`
+   `Joshua Hegstad is a co-founder of <COMPANY_NAME> and studies computer science at Columbia University.`
 
 2. In `src/app/page.tsx`, change the hero category line to `<COMPANY_NAME>` and add `<TAGLINE>` below it.
-3. Replace the opening sentence under "What I'm building" with `I'm Co-Founder & CTO of <COMPANY_NAME>.`
+3. Replace the sentence under "What I'm building" with `I'm a co-founder of <COMPANY_NAME>.`
 4. Replace the existing reveal TODO with a link to `<COMPANY_ORIGIN>`.
 5. Keep the sitemap routes unchanged.
 

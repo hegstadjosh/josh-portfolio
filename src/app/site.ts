@@ -1,8 +1,8 @@
 export const SITE_ORIGIN = "https://www.joshhegstad.org";
 export const SITE_NAME = "Joshua Hegstad";
-export const SITE_TITLE = "Co-Founder & CTO";
+export const SITE_TITLE = "Co-Founder";
 export const SITE_DESCRIPTION =
-  "Joshua Hegstad is a co-founder and CTO building an AI history company. Full stack AI engineer. Computer Science at Columbia University.";
+  "Joshua Hegstad is a co-founder building an AI history company and studies computer science at Columbia University.";
 export const LINKEDIN_URL =
   "https://www.linkedin.com/in/joshua-hegstad-976ba2242/";
 
@@ -10,7 +10,7 @@ export const profilePage = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   dateCreated: "2025-09-04",
-  dateModified: "2026-08-24",
+  dateModified: "2026-08-25",
   mainEntity: {
     "@type": "Person",
     "@id": `${SITE_ORIGIN}/#person`,
@@ -21,7 +21,7 @@ export const profilePage = {
     url: SITE_ORIGIN,
     jobTitle: SITE_TITLE,
     description:
-      "Co-founder and CTO building an AI history company. Full stack AI engineer. Computer Science at Columbia University.",
+      "Co-founder building an AI history company. Computer science at Columbia University.",
     disambiguatingDescription:
       "American software engineer and startup co-founder, Columbia University",
     worksFor: {
@@ -35,8 +35,6 @@ export const profilePage = {
     },
     knowsAbout: [
       "artificial intelligence",
-      "retrieval-augmented generation",
-      "voice AI",
       "full stack web development",
       "augmented reality",
       "Next.js",

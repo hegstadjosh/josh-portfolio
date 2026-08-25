@@ -43,7 +43,7 @@ export default function Home() {
           </h1>
 
           <p className="mb-3 text-2xl font-semibold text-gray-100">
-            Co-Founder &amp; CTO
+            Co-Founder
           </p>
           <p className="mb-4 text-xl text-[#6CACE4]">
             Building an AI history company.
@@ -108,10 +108,7 @@ export default function Home() {
             What I&apos;m building
           </h2>
           <p className="text-lg leading-relaxed text-gray-300">
-            I&apos;m a co-founder and CTO of an AI history company. The hard
-            part isn&apos;t making a model role play a historical figure.
-            It&apos;s making it faithful to the record. I build the retrieval,
-            grounding, and live voice systems that make that work in production.
+            I&apos;m a co-founder of an AI history company.
           </p>
           {/* TODO(reveal): Link the company after the coordinated launch. */}
         </div>
