@@ -54,7 +54,7 @@ export async function generateMetadata({
   const doc = docs[slug];
   if (!doc) return { title: "Not Found" };
   return {
-    title: `${doc.title} — Joshua Hegstad`,
+    title: doc.title,
     description: doc.description,
     alternates: { canonical: `/skills/docs/${slug}` },
   };

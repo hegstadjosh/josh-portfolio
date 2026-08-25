@@ -65,3 +65,8 @@ test("homepage omits the resume and renders a real paper preview", () => {
     false,
   );
 });
+
+test("nested page titles let the root template add the site name once", () => {
+  const docsRoute = read("src/app/skills/docs/[slug]/page.tsx");
+  assert.doesNotMatch(docsRoute, /title: `\$\{doc\.title\} — Joshua Hegstad`/);
+});
