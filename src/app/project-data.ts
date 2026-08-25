@@ -26,7 +26,6 @@ export const featuredProjects = [
       "AWS Fargate",
       "MCP",
     ],
-    link: "https://simetic.com",
   },
   {
     name: "NASA SUITS",

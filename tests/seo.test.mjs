@@ -39,3 +39,10 @@ test("homepage leads with founder positioning and links the setup route", () => 
   assert.doesNotMatch(homepage, /\bCTO\b|retrieval|grounding|live voice/);
   assert.doesNotMatch(homepage, /href="#claude-setup"/);
 });
+
+test("active pages do not link to the retired Simetic domain", () => {
+  const activeSite = `${read("src/app/project-data.ts")}\n${read(
+    "src/app/debt-vulture/page.tsx",
+  )}`;
+  assert.doesNotMatch(activeSite, /https?:\/\/(?:www\.)?simetic\.com/i);
+});

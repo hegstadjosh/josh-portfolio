@@ -86,16 +86,7 @@ export default function DebtVulturePage() {
           <p className="text-gray-500">
             The simulation engine that grew out of this work — domain-agnostic
             multi-agent sandbox with persistent memory, reflection, and
-            causality tracking — has been spun out as its own product:{" "}
-            <a
-              href="https://simetic.com"
-              target="_blank"
-              rel="noopener"
-              className="text-[#6CACE4] hover:underline"
-            >
-              simetic.com
-            </a>
-            .
+            causality tracking — has been spun out as its own product, Simetic.
           </p>
         </div>
       </section>
