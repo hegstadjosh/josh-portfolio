@@ -10,6 +10,7 @@ test("root metadata uses one canonical founder identity", () => {
   assert.match(metadata, /Co-Founder & CTO/);
   assert.match(metadata, /FULL_TITLE/);
   assert.match(metadata, /ProfilePage/);
+  assert.match(metadata, /verification/);
   assert.doesNotMatch(metadata, /Software Engineer/);
 });
 

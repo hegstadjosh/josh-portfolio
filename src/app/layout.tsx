@@ -54,6 +54,9 @@ export const metadata: Metadata = {
   },
   authors: [{ name: SITE_NAME, url: SITE_ORIGIN }],
   creator: SITE_NAME,
+  verification: {
+    google: "FLAclteTHensXJjilBwlDo8So-YrvRRnEphx1DnyQeQ",
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#000000" };
