@@ -70,3 +70,11 @@ test("nested page titles let the root template add the site name once", () => {
   const docsRoute = read("src/app/skills/docs/[slug]/page.tsx");
   assert.doesNotMatch(docsRoute, /title: `\$\{doc\.title\} — Joshua Hegstad`/);
 });
+
+test("duplicate deployment hosts permanently redirect to the canonical site", () => {
+  const middlewarePath = new URL("../src/middleware.ts", import.meta.url);
+  assert.equal(existsSync(middlewarePath), true);
+  const middleware = read("src/middleware.ts");
+  assert.match(middleware, /endsWith\("\.vercel\.app"\)/);
+  assert.match(middleware, /NextResponse\.redirect\(url, 308\)/);
+});
