@@ -10,14 +10,14 @@ Checked 2026-08-25. The website and GitHub changes are public. LinkedIn remains 
 - Available for hire: off
 - Profile README: `hegstadjosh/hegstadjosh`
 - README copy: `Co-founder. Computer science at Columbia.`
-- Pinned repositories:
+- Pinned repositories, in the order GitHub currently displays them:
 
-1. `river`
-2. `josh-portfolio`
-3. `dont-fret`
-4. `SUITS-24-25-EVA`
-5. `pdf-to-anki`
-6. `simple-gpt-pdf-chat`
+1. `pdf-to-anki`
+2. `dont-fret`
+3. `josh-portfolio`
+4. `river`
+5. `simple-gpt-pdf-chat`
+6. `SUITS-24-25-EVA`
 
 ## LinkedIn
 
