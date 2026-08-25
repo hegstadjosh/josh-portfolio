@@ -93,21 +93,6 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="px-6 py-20" aria-labelledby="building-heading">
-        <div className="mx-auto max-w-3xl border-l-2 border-[#6CACE4] pl-6">
-          <h2
-            id="building-heading"
-            className="mb-4 text-3xl font-bold text-white"
-          >
-            What I&apos;m building
-          </h2>
-          <p className="text-lg leading-relaxed text-gray-300">
-            I&apos;m a co-founder of an AI history company.
-          </p>
-          {/* TODO(reveal): Link the company after the coordinated launch. */}
-        </div>
-      </section>
-
       {/* Projects Section */}
       <section id="projects" className="px-6 py-20">
         <div className="mx-auto max-w-5xl">

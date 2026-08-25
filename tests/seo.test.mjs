@@ -37,6 +37,7 @@ test("homepage leads with founder positioning and links the setup route", () => 
   assert.match(homepage, /Selected work/);
   assert.match(homepage, /href="\/claude-code"/);
   assert.doesNotMatch(homepage, /\bCTO\b|retrieval|grounding|live voice/);
+  assert.doesNotMatch(homepage, /What I(?:&apos;|')m building/);
   assert.doesNotMatch(homepage, /href="#claude-setup"/);
 });
 
