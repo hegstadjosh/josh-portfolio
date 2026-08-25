@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface OtherProject {
   name: string;
@@ -146,36 +146,5 @@ export function ProjectModal({
         </div>
       )}
     </>
-  );
-}
-
-export function ResumeSection() {
-  const [resumeUrl, setResumeUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch("/api/resume-url")
-      .then((res) => res.json())
-      .then((data: { url: string }) => setResumeUrl(data.url))
-      .catch((err) => console.error("Failed to load resume:", err));
-  }, []);
-
-  return (
-    <section id="resume" className="bg-gray-900/30 px-6 py-20">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-3xl font-bold text-white">Resume</h2>
-        {resumeUrl ? (
-          <a
-            href={resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex border border-[#6CACE4] px-6 py-3 font-medium text-[#6CACE4] transition-colors hover:bg-[#6CACE4]/10"
-          >
-            View resume
-          </a>
-        ) : (
-          <p className="text-gray-300">Loading resume...</p>
-        )}
-      </div>
-    </section>
   );
 }

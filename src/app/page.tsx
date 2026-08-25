@@ -1,6 +1,6 @@
 import Link from "next/link";
 import FeaturedProjects from "./featured-projects";
-import { ProjectModal, ResumeSection } from "./home-client";
+import { ProjectModal } from "./home-client";
 import { otherProjects } from "./project-data";
 
 export default function Home() {
@@ -16,12 +16,6 @@ export default function Home() {
               className="text-gray-300 transition-colors hover:text-white"
             >
               Work
-            </a>
-            <a
-              href="#resume"
-              className="text-gray-300 transition-colors hover:text-white"
-            >
-              Resume
             </a>
             <a
               href="#contact"
@@ -129,9 +123,6 @@ export default function Home() {
           <ProjectModal otherProjects={otherProjects} />
         </div>
       </section>
-
-      {/* Resume Section */}
-      <ResumeSection />
 
       {/* Contact Section */}
       <footer id="contact" className="px-6 py-20">

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 const read = (path) =>
@@ -45,4 +45,23 @@ test("active pages do not link to the retired Simetic domain", () => {
     "src/app/debt-vulture/page.tsx",
   )}`;
   assert.doesNotMatch(activeSite, /https?:\/\/(?:www\.)?simetic\.com/i);
+});
+
+test("homepage omits the resume and renders a real paper preview", () => {
+  const homepage = read("src/app/page.tsx");
+  const featuredProjects = read("src/app/featured-projects.tsx");
+  const projects = read("src/app/project-data.ts");
+  assert.doesNotMatch(homepage, /href="#resume"|<ResumeSection/);
+  assert.doesNotMatch(featuredProjects, /bg-gradient-to-br/);
+  assert.match(projects, /previewImage: "\/nlp-paper-preview\.png"/);
+  assert.equal(
+    existsSync(new URL("../src/app/api/resume-url/route.ts", import.meta.url)),
+    false,
+  );
+  assert.equal(
+    existsSync(
+      new URL("../src/app/api/upload-resume/route.ts", import.meta.url),
+    ),
+    false,
+  );
 });

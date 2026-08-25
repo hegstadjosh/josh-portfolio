@@ -7,22 +7,22 @@ function ProjectPreview({
 }: {
   project: (typeof featuredProjects)[number];
 }) {
-  if ("previewImage" in project && project.previewImage) {
-    return (
-      <div className="relative h-full w-full">
-        <Image
-          src={project.previewImage}
-          alt={`${project.name} preview`}
-          fill
-          sizes="(max-width: 1024px) 100vw, 1024px"
-          className="object-contain p-12"
-        />
-      </div>
-    );
-  }
+  if (!("previewImage" in project) || !project.previewImage) return null;
+
+  const isDocument =
+    "previewStyle" in project && project.previewStyle === "document";
+
   return (
-    <div className="flex h-full items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 text-4xl font-bold text-gray-500">
-      {project.name}
+    <div className={`relative h-full w-full ${isDocument ? "bg-white" : ""}`}>
+      <Image
+        src={project.previewImage}
+        alt={`${project.name} preview`}
+        fill
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className={
+          isDocument ? "object-cover object-top" : "object-contain p-12"
+        }
+      />
     </div>
   );
 }
@@ -46,9 +46,11 @@ export default function FeaturedProjects() {
       key={project.name}
       className="overflow-hidden border border-gray-800 bg-gray-900/50"
     >
-      <div className="relative h-[400px] bg-black">
-        <ProjectPreview project={project} />
-      </div>
+      {"previewImage" in project && project.previewImage ? (
+        <div className="relative h-[400px] bg-black">
+          <ProjectPreview project={project} />
+        </div>
+      ) : null}
       <div className="p-6">
         <h3 className="mb-2 text-xl font-semibold text-white">
           {project.name}

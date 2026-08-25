@@ -40,6 +40,8 @@ export const featuredProjects = [
     description:
       "Three-stage pipeline reducing LLM hallucinations in closed-book QA. It reached 97.5% precision in hallucination detection and improved Selective F1 from 0.50 to 0.70.",
     technologies: ["Python", "PyTorch", "HuggingFace", "LoRA/QLoRA", "RL"],
+    previewImage: "/nlp-paper-preview.png",
+    previewStyle: "document",
     link: "/nlp-paper.pdf",
   },
 ];
