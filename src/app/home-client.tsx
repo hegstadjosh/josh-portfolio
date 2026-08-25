@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 interface OtherProject {
@@ -10,50 +11,57 @@ interface OtherProject {
   details?: string[];
 }
 
-
 export function ProjectModal({
   otherProjects,
 }: {
   otherProjects: OtherProject[];
 }) {
   const [selectedProject, setSelectedProject] = useState<OtherProject | null>(
-    null
+    null,
   );
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {otherProjects.map((project) => (
-          <div
+          <button
+            type="button"
             key={project.name}
-            className="bg-gray-900/30 border border-gray-800 p-4 cursor-pointer hover:border-[#6CACE4]/50 transition-all"
+            className="cursor-pointer border border-gray-800 bg-gray-900/30 p-4 text-left transition-all hover:border-[#6CACE4]/50"
             onClick={() => setSelectedProject(project)}
           >
-            <h4 className="text-white font-medium text-sm mb-1">
+            <h4 className="mb-1 text-sm font-medium text-white">
               {project.name}
             </h4>
-            <p className="text-gray-500 text-xs">Click to view</p>
-          </div>
+            <p className="text-xs text-gray-300">Click to view</p>
+          </button>
         ))}
       </div>
 
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
           onClick={() => setSelectedProject(null)}
+          role="presentation"
         >
           <div
-            className="bg-gray-900 border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-auto"
+            className="max-h-[90vh] w-full max-w-4xl overflow-auto border border-gray-700 bg-gray-900"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedProject.name} details`}
           >
-            {selectedProject.demoImages && selectedProject.demoImages.length > 0 ? (
-              <div className="bg-black p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {selectedProject.demoImages &&
+            selectedProject.demoImages.length > 0 ? (
+              <div className="grid grid-cols-1 gap-4 bg-black p-4 sm:grid-cols-2">
                 {selectedProject.demoImages.map((src) => (
-                  <img
+                  <Image
                     key={src}
                     src={src}
                     alt={selectedProject.name}
-                    className="w-full h-auto object-contain"
+                    width={900}
+                    height={1136}
+                    className="h-auto w-full object-contain"
                   />
                 ))}
               </div>
@@ -62,22 +70,24 @@ export function ProjectModal({
                 <iframe
                   src={selectedProject.link}
                   title={selectedProject.name}
-                  className="w-full h-full"
+                  className="h-full w-full"
                 />
               </div>
             ) : null}
 
             <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-white text-2xl font-semibold">
+              <div className="mb-4 flex items-start justify-between">
+                <h3 className="text-2xl font-semibold text-white">
                   {selectedProject.name}
                 </h3>
                 <button
+                  type="button"
                   onClick={() => setSelectedProject(null)}
                   className="text-gray-400 hover:text-white"
+                  aria-label="Close project details"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -92,16 +102,16 @@ export function ProjectModal({
                 </button>
               </div>
 
-              <p className="text-gray-400 mb-4">
+              <p className="mb-4 text-gray-400">
                 {selectedProject.description}
               </p>
 
               {selectedProject.details && (
-                <ul className="space-y-2 mb-4">
+                <ul className="mb-4 space-y-2">
                   {selectedProject.details.map((detail, i) => (
                     <li
                       key={i}
-                      className="text-gray-300 text-sm flex items-start gap-2"
+                      className="flex items-start gap-2 text-sm text-gray-300"
                     >
                       <span className="text-[#6CACE4]">•</span>
                       {detail}
@@ -110,11 +120,11 @@ export function ProjectModal({
                 </ul>
               )}
 
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="mb-4 flex flex-wrap gap-2">
                 {selectedProject.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-gray-800 text-gray-300 text-sm"
+                    className="bg-gray-800 px-3 py-1 text-sm text-gray-300"
                   >
                     {tech}
                   </span>
@@ -125,7 +135,8 @@ export function ProjectModal({
                 <a
                   href={selectedProject.link}
                   target="_blank"
-                  className="inline-block bg-[#6CACE4] text-black px-4 py-2 font-medium hover:bg-[#6CACE4]/80 transition-all"
+                  rel="noreferrer"
+                  className="inline-block bg-[#6CACE4] px-4 py-2 font-medium text-black transition-all hover:bg-[#6CACE4]/80"
                 >
                   Visit Site →
                 </a>
@@ -149,24 +160,20 @@ export function ResumeSection() {
   }, []);
 
   return (
-    <section id="resume" className="py-20 px-6 bg-gray-900/30">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-8">Resume</h2>
+    <section id="resume" className="bg-gray-900/30 px-6 py-20">
+      <div className="mx-auto max-w-4xl">
+        <h2 className="mb-8 text-3xl font-bold text-white">Resume</h2>
         {resumeUrl ? (
-          <div className="bg-white" style={{ aspectRatio: "8.5/11" }}>
-            <iframe
-              src={resumeUrl}
-              title="Resume"
-              className="w-full h-full border-0"
-            />
-          </div>
-        ) : (
-          <div
-            className="bg-gray-800/50 border border-gray-800 flex items-center justify-center"
-            style={{ aspectRatio: "8.5/11" }}
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex border border-[#6CACE4] px-6 py-3 font-medium text-[#6CACE4] transition-colors hover:bg-[#6CACE4]/10"
           >
-            <p className="text-gray-500">Loading resume...</p>
-          </div>
+            View resume
+          </a>
+        ) : (
+          <p className="text-gray-300">Loading resume...</p>
         )}
       </div>
     </section>

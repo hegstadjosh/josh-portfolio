@@ -56,6 +56,7 @@ export async function generateMetadata({
   return {
     title: `${doc.title} — Joshua Hegstad`,
     description: doc.description,
+    alternates: { canonical: `/skills/docs/${slug}` },
   };
 }
 
@@ -71,31 +72,31 @@ export default async function DocPage({
   const contentPath = path.join(
     process.cwd(),
     "src/app/skills/docs/_content",
-    doc.file
+    doc.file,
   );
   const content = fs.readFileSync(contentPath, "utf-8");
 
   return (
     <main className="min-h-screen bg-black">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <nav className="fixed top-0 right-0 left-0 z-50 border-b border-gray-800 bg-black/80 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link
             href="/"
-            className="text-white font-semibold hover:text-gray-300 transition-colors"
+            className="font-semibold text-white transition-colors hover:text-gray-300"
           >
             JH
           </Link>
           <div className="flex gap-8 text-sm">
             <Link
-              href="/skills"
-              className="text-gray-400 hover:text-white transition-colors"
+              href="/claude-code"
+              className="text-gray-400 transition-colors hover:text-white"
             >
               Skills
             </Link>
             <Link
               href="/"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 transition-colors hover:text-white"
             >
               Home
             </Link>
@@ -104,15 +105,15 @@ export default async function DocPage({
       </nav>
 
       {/* Header */}
-      <header className="pt-32 pb-8 px-6">
-        <div className="max-w-3xl mx-auto">
+      <header className="px-6 pt-32 pb-8">
+        <div className="mx-auto max-w-3xl">
           <Link
             href="/skills"
-            className="text-gray-500 text-sm hover:text-[#6CACE4] transition-colors mb-4 inline-block"
+            className="mb-4 inline-block text-sm text-gray-500 transition-colors hover:text-[#6CACE4]"
           >
-            &larr; Back to Skills
+            &larr; Back to Claude Code setup
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+          <h1 className="mb-3 text-3xl font-bold text-white sm:text-4xl">
             {doc.title}
           </h1>
           <p className="text-gray-400">{doc.description}</p>
@@ -121,35 +122,35 @@ export default async function DocPage({
 
       {/* Rendered Markdown */}
       <article className="px-6 pb-20">
-        <div className="max-w-3xl mx-auto prose-custom">
+        <div className="prose-custom mx-auto max-w-3xl">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-white mt-12 mb-4">
+                <h1 className="mt-12 mb-4 text-3xl font-bold text-white">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-2xl font-bold text-white mt-10 mb-3 pb-2 border-b border-gray-800">
+                <h2 className="mt-10 mb-3 border-b border-gray-800 pb-2 text-2xl font-bold text-white">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-xl font-semibold text-white mt-8 mb-2">
+                <h3 className="mt-8 mb-2 text-xl font-semibold text-white">
                   {children}
                 </h3>
               ),
               h4: ({ children }) => (
-                <h4 className="text-lg font-semibold text-gray-200 mt-6 mb-2">
+                <h4 className="mt-6 mb-2 text-lg font-semibold text-gray-200">
                   {children}
                 </h4>
               ),
               p: ({ children }) => (
-                <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
+                <p className="mb-4 leading-relaxed text-gray-300">{children}</p>
               ),
               strong: ({ children }) => (
-                <strong className="text-white font-semibold">{children}</strong>
+                <strong className="font-semibold text-white">{children}</strong>
               ),
               em: ({ children }) => (
                 <em className="text-gray-400 italic">{children}</em>
@@ -164,20 +165,20 @@ export default async function DocPage({
                 </a>
               ),
               ul: ({ children }) => (
-                <ul className="text-gray-300 space-y-1 mb-4 ml-4 list-disc list-outside">
+                <ul className="mb-4 ml-4 list-outside list-disc space-y-1 text-gray-300">
                   {children}
                 </ul>
               ),
               ol: ({ children }) => (
-                <ol className="text-gray-300 space-y-1 mb-4 ml-4 list-decimal list-outside">
+                <ol className="mb-4 ml-4 list-outside list-decimal space-y-1 text-gray-300">
                   {children}
                 </ol>
               ),
               li: ({ children }) => (
-                <li className="text-gray-300 leading-relaxed">{children}</li>
+                <li className="leading-relaxed text-gray-300">{children}</li>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-2 border-[#6CACE4] pl-4 my-4 text-gray-400 italic">
+                <blockquote className="my-4 border-l-2 border-[#6CACE4] pl-4 text-gray-400 italic">
                   {children}
                 </blockquote>
               ),
@@ -185,24 +186,24 @@ export default async function DocPage({
                 const isBlock = className?.includes("language-");
                 if (isBlock) {
                   return (
-                    <code className="text-gray-300 text-sm">{children}</code>
+                    <code className="text-sm text-gray-300">{children}</code>
                   );
                 }
                 return (
-                  <code className="text-[#6CACE4] bg-gray-800/50 px-1.5 py-0.5 text-sm rounded">
+                  <code className="rounded bg-gray-800/50 px-1.5 py-0.5 text-sm text-[#6CACE4]">
                     {children}
                   </code>
                 );
               },
               pre: ({ children }) => (
-                <pre className="bg-gray-900/80 border border-gray-800 p-4 overflow-x-auto mb-4 text-sm">
+                <pre className="mb-4 overflow-x-auto border border-gray-800 bg-gray-900/80 p-4 text-sm">
                   {children}
                 </pre>
               ),
-              hr: () => <hr className="border-gray-800 my-8" />,
+              hr: () => <hr className="my-8 border-gray-800" />,
               table: ({ children }) => (
-                <div className="overflow-x-auto mb-4">
-                  <table className="w-full text-sm text-gray-300 border-collapse">
+                <div className="mb-4 overflow-x-auto">
+                  <table className="w-full border-collapse text-sm text-gray-300">
                     {children}
                   </table>
                 </div>
@@ -213,12 +214,12 @@ export default async function DocPage({
                 </thead>
               ),
               th: ({ children }) => (
-                <th className="text-left px-3 py-2 font-semibold">
+                <th className="px-3 py-2 text-left font-semibold">
                   {children}
                 </th>
               ),
               td: ({ children }) => (
-                <td className="px-3 py-2 border-b border-gray-800">
+                <td className="border-b border-gray-800 px-3 py-2">
                   {children}
                 </td>
               ),
@@ -229,13 +230,13 @@ export default async function DocPage({
         </div>
       </article>
 
-      <footer className="py-12 px-6 border-t border-gray-800">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-gray-600 text-sm">
+      <footer className="border-t border-gray-800 px-6 py-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm text-gray-600">
             Built by{" "}
             <Link
               href="/"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 transition-colors hover:text-white"
             >
               Joshua Hegstad
             </Link>
