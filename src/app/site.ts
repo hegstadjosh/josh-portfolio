@@ -3,6 +3,7 @@ export const SITE_NAME = "Joshua Hegstad";
 export const SITE_TITLE = "Co-Founder";
 export const SITE_DESCRIPTION =
   "Joshua Hegstad is a co-founder building an AI history company and studies computer science at Columbia University.";
+export const PROFILE_IMAGE = `${SITE_ORIGIN}/joshua-hegstad-headshot.jpg`;
 export const LINKEDIN_URL =
   "https://www.linkedin.com/in/joshua-hegstad-976ba2242/";
 
@@ -19,6 +20,7 @@ export const profilePage = {
     givenName: "Joshua",
     familyName: "Hegstad",
     url: SITE_ORIGIN,
+    image: PROFILE_IMAGE,
     jobTitle: SITE_TITLE,
     description:
       "Co-founder building an AI history company. Computer science at Columbia University.",
@@ -28,7 +30,7 @@ export const profilePage = {
       "@type": "Organization",
       description: "An AI history company (stealth until launch)",
     },
-    alumniOf: {
+    affiliation: {
       "@type": "CollegeOrUniversity",
       name: "Columbia University",
       sameAs: "https://www.wikidata.org/wiki/Q49088",

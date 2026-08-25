@@ -15,6 +15,15 @@ test("root metadata uses one canonical founder identity", () => {
   assert.doesNotMatch(metadata, /\bCTO\b/);
   assert.doesNotMatch(metadata, /retrieval-augmented generation|voice AI/);
   assert.doesNotMatch(metadata, /Software Engineer/);
+  assert.match(metadata, /joshua-hegstad-headshot\.jpg/);
+  assert.match(metadata, /affiliation/);
+  assert.doesNotMatch(metadata, /alumniOf/);
+  assert.equal(
+    existsSync(
+      new URL("../public/joshua-hegstad-headshot.jpg", import.meta.url),
+    ),
+    true,
+  );
 });
 
 test("metadata routes and generated images exist", () => {
