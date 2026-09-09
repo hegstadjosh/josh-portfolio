@@ -1,5 +1,12 @@
 export const featuredProjects = [
   {
+    name: "Voices of History",
+    description:
+      "An AI history company building conversations with historical figures for games, classrooms, museums, and media.",
+    technologies: ["AI", "History"],
+    link: "https://voicesofhistory.co",
+  },
+  {
     name: "Debt Vulture",
     description:
       "Bankruptcy intelligence platform for distressed debt investors. Monitors PACER filings in real time, extracts structured data from legal documents, and maps affected public companies. First paying customer is a hedge fund.",

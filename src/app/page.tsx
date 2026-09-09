@@ -37,14 +37,20 @@ export default function Home() {
           </h1>
 
           <p className="mb-3 text-2xl font-semibold text-gray-100">
-            Co-Founder
+            Co-Founder & CTO
           </p>
           <p className="mb-4 text-xl text-[#6CACE4]">
-            Building an AI history company.
+            <a
+              href="https://voicesofhistory.co"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:underline"
+            >
+              Voices of History
+            </a>
           </p>
           <p className="mx-auto mb-10 max-w-2xl text-lg text-gray-300">
-            Full stack AI and AR engineer. Computer Science at Columbia
-            University.
+            Full-stack AI engineer. Computer Science at Columbia University.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">

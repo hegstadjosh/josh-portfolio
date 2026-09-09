@@ -8,11 +8,14 @@ const read = (path) =>
 test("root metadata uses one canonical founder identity", () => {
   const metadata = `${read("src/app/layout.tsx")}\n${read("src/app/site.ts")}`;
   assert.match(metadata, /https:\/\/www\.joshhegstad\.org/);
-  assert.match(metadata, /Co-Founder/);
+  assert.match(metadata, /Co-Founder & CTO/);
+  assert.match(metadata, /Voices of History/);
+  assert.match(metadata, /https:\/\/voicesofhistory\.co/);
+  assert.match(metadata, /https:\/\/www\.wikidata\.org\/wiki\/Q141373073/);
+  assert.match(metadata, /dateModified: "2026-09-09"/);
   assert.match(metadata, /FULL_TITLE/);
   assert.match(metadata, /ProfilePage/);
   assert.match(metadata, /verification/);
-  assert.doesNotMatch(metadata, /\bCTO\b/);
   assert.doesNotMatch(metadata, /retrieval-augmented generation|voice AI/);
   assert.doesNotMatch(metadata, /Software Engineer/);
   assert.match(metadata, /joshua-hegstad-headshot\.jpg/);
@@ -41,13 +44,28 @@ test("metadata routes and generated images exist", () => {
 
 test("homepage leads with founder positioning and links the setup route", () => {
   const homepage = read("src/app/page.tsx");
-  assert.match(homepage, /Co-Founder/);
-  assert.match(homepage, /Building an AI history company\./);
+  assert.match(homepage, /Co-Founder & CTO/);
+  assert.match(homepage, /href="https:\/\/voicesofhistory\.co"/);
+  assert.match(homepage, /Voices of History/);
+  assert.match(homepage, /Full-stack AI engineer\./);
   assert.match(homepage, /Selected work/);
   assert.match(homepage, /href="\/claude-code"/);
-  assert.doesNotMatch(homepage, /\bCTO\b|retrieval|grounding|live voice/);
+  assert.doesNotMatch(homepage, /retrieval|grounding|live voice/);
   assert.doesNotMatch(homepage, /What I(?:&apos;|')m building/);
   assert.doesNotMatch(homepage, /href="#claude-setup"/);
+});
+
+test("Voices of History is the first featured project", () => {
+  const projects = read("src/app/project-data.ts");
+  assert.match(
+    projects,
+    /featuredProjects = \[\s*\{\s*name: "Voices of History"/,
+  );
+  assert.match(
+    projects,
+    /An AI history company building conversations with historical figures for games, classrooms, museums, and media\./,
+  );
+  assert.match(projects, /link: "https:\/\/voicesofhistory\.co"/);
 });
 
 test("active pages do not link to the retired Simetic domain", () => {
