@@ -46,6 +46,12 @@ export const profilePage = {
       "TypeScript",
       "Python",
     ],
-    sameAs: ["https://github.com/hegstadjosh", LINKEDIN_URL, WIKIDATA_URL],
+    sameAs: [
+      "https://github.com/hegstadjosh",
+      LINKEDIN_URL,
+      WIKIDATA_URL,
+      "https://devpost.com/hegstadjosh",
+      "https://www.instagram.com/josh.hegstad/",
+    ],
   },
 };
