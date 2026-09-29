@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import FeaturedProjects from "./featured-projects";
 import { ProjectModal } from "./home-client";
 import { otherProjects } from "./project-data";
@@ -30,6 +31,14 @@ export default function Home() {
       {/* Hero Section */}
       <header className="flex min-h-screen items-center justify-center pt-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
+          <Image
+            src="/joshua-hegstad-headshot.webp"
+            alt="Joshua Hegstad in a park"
+            width={800}
+            height={800}
+            priority
+            className="mx-auto mb-8 h-44 w-44 border border-white/20 object-cover sm:h-52 sm:w-52"
+          />
           <h1 className="mb-6 text-5xl font-black sm:text-7xl">
             <span className="bg-gradient-to-r from-white via-gray-200 to-[#6CACE4] bg-clip-text text-transparent">
               Joshua Hegstad

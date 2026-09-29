@@ -6,6 +6,7 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import {
   profilePage,
+  PROFILE_IMAGE,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_ORIGIN,
@@ -45,11 +46,13 @@ export const metadata: Metadata = {
     title: FULL_TITLE,
     description: SITE_DESCRIPTION,
     locale: "en_US",
+    images: [{ url: PROFILE_IMAGE, width: 800, height: 800, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
     title: FULL_TITLE,
     description: SITE_DESCRIPTION,
+    images: [{ url: PROFILE_IMAGE, alt: SITE_NAME }],
   },
   authors: [{ name: SITE_NAME, url: SITE_ORIGIN }],
   creator: SITE_NAME,

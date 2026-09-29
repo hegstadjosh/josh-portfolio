@@ -12,13 +12,15 @@ test("root metadata uses one canonical founder identity", () => {
   assert.match(metadata, /Voices of History/);
   assert.match(metadata, /https:\/\/voicesofhistory\.co/);
   assert.match(metadata, /https:\/\/www\.wikidata\.org\/wiki\/Q141373073/);
-  assert.match(metadata, /dateModified: "2026-09-09"/);
+  assert.match(metadata, /dateModified: "2026-09-28"/);
   assert.match(metadata, /FULL_TITLE/);
   assert.match(metadata, /ProfilePage/);
   assert.match(metadata, /verification/);
   assert.doesNotMatch(metadata, /retrieval-augmented generation|voice AI/);
   assert.doesNotMatch(metadata, /Software Engineer/);
   assert.match(metadata, /joshua-hegstad-headshot\.jpg/);
+  assert.match(metadata, /images: \[\{ url: PROFILE_IMAGE/);
+  assert.match(metadata, /jobTitle: "Co-founder & CTO"/);
   assert.match(metadata, /affiliation/);
   assert.doesNotMatch(metadata, /alumniOf/);
   assert.equal(
@@ -33,12 +35,19 @@ test("metadata routes and generated images exist", () => {
   for (const path of [
     "src/app/icon.tsx",
     "src/app/apple-icon.tsx",
-    "src/app/opengraph-image.tsx",
     "src/app/manifest.ts",
     "src/app/robots.ts",
     "src/app/sitemap.ts",
   ]) {
     assert.ok(read(path).length > 0, `${path} should not be empty`);
+  }
+  for (const path of [
+    "public/joshua-hegstad-headshot.jpg",
+    "public/joshua-hegstad-headshot.webp",
+    "public/joshua-hegstad-portrait.jpg",
+    "public/joshua-hegstad-portrait.webp",
+  ]) {
+    assert.equal(existsSync(new URL(`../${path}`, import.meta.url)), true);
   }
 });
 

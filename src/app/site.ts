@@ -13,7 +13,7 @@ export const profilePage = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   dateCreated: "2025-09-04",
-  dateModified: "2026-09-09",
+  dateModified: "2026-09-28",
   mainEntity: {
     "@type": "Person",
     "@id": `${SITE_ORIGIN}/#person`,
@@ -23,7 +23,7 @@ export const profilePage = {
     familyName: "Hegstad",
     url: SITE_ORIGIN,
     image: PROFILE_IMAGE,
-    jobTitle: SITE_TITLE,
+    jobTitle: "Co-founder & CTO",
     description: SITE_DESCRIPTION,
     disambiguatingDescription:
       "American software engineer and startup co-founder, Columbia University",
